@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Subltr</title>
+    <script src="https://kit.fontawesome.com/5801cc7b40.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+<header class="bg-img ">
+
+    <div id="box" class="navbar is-spaced is-align-self-center has-background-primary" role='navigation'
+        aria-label="dropdown navigation">
+        <div class="navbar-brand ">
+            <span class="icon-text pr-6 title is-1 has-text-white-bis">
+                <span class="icon has-text-white-bis ml-6">
+                    <i class="fas fa-home mdi mdi-48px"></i>
+                </span>
+                <span> Subltr</span>
+
+            </span>
+
+        </div>
+        <nav class="navbar has-background-primary" role="navigation" aria-label="dropdown navigation">
+
+
+        </nav>
+        <div class="navbar-menu is-active">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a id="signupbtn" class="loggedout has-text-white">Sign Up</a>
+                </div>
+                <div class="navbar-item">
+                    <a id="signinbtn" class="loggedout has-text-white">Sign In</a>
+                </div>
+                <div class="navbar-item" id="welcomeUser">
+                </div>
+                <div class="navbar-item">
+                    <a id="signoutbtn" class="loggedin has-text-white">Sign Out</a>
+                </div>
+                <div class=" navbar-item">
+                    <a id="postListingBtn" class="loggedin has-text-white">Post a Listing</a>
+                </div>
+            </div>
+
+        </div>
+
+</header>
+
+
+<body>
+    <!-- Preference Search Bar
+    <table class="table mt-6 ml-6">
+        <tr>
+            <td>Location</td>
+            <td>Beds</td>
+            <td>Baths</td>
+            <td>Price(Low)</td>
+            <td>Price(High)</td>
+            <td>Search</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="control mr-4">
+                    <div class="select" id="locationSelect">
+                        <select>
+                            <option>Select</option>
+                            <option>Madison</option>
+                            <option>Chicago</option>
+                            <option>Minneapolis</option>
+                            <option>Milwaukee </option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="contro">
+                    <div class="select" id=numBeds>
+                        <select>
+                            <option>Select</option>
+                            <option>Studio</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4+</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="control">
+                    <div class="select" id="numBaths">
+
+                        <select>
+                            <option>Select</option>
+                            <option>1.5</option>
+                            <option>2</option>
+                            <option>2.5</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="control">
+                    <div class="select" id="priceLow">
+                        <select class="select" id="priceLow">
+                            <option>Select</option>
+                            <option>300</option>
+                            <option>500</option>
+                            <option>700</option>
+                            <option>900</option>
+                            <option>1100</option>
+                            <option>1300+</option>
+                        </select>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="control ">
+                    <div class="select" id="priceHigh">
+                        <div class="label">
+
+                            <select>
+                                <option>Select</option>
+                                <option>300</option>
+                                <option>500</option>
+                                <option>700</option>
+                                <option>900</option>
+                                <option>1100</option>
+                                <option>1300+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="control">
+                    <button class="button is-primary" id="searchbtn">Submit</button>
+                </div>
+            </td>
+        </tr>
+    </table> -->
+
+
+
+
+
+
+
+    <!-- Start of the info columns -->
+    <div class="columns">
+        <div class="column is-three-fifths ml-6 mt-6">
+            <div class="box" style="overflow:auto">
+                <table class="table is-fullwidth">
+                    <tr>
+                        <td>Location</td>
+                        <td>Beds</td>
+                        <td>Baths</td>
+                        <td>Price(Low)</td>
+                        <td>Price(High)</td>
+                        <td>Search</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="control">
+                                <div class="select" id="locationSelect">
+                                    <select>
+                                        <option value="Select">Select</option>
+                                        <option value="Madison">Madison</option>
+                                        <option value="Chicago">Chicago</option>
+                                        <option value="Minneapolis">Minneapolis</option>
+                                        <option value="Milwaukee">Milwaukee </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <div class="select" id=numBeds>
+                                    <select>
+                                        <option value="Select">Select</option>
+                                        <option value="Studio">Studio</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4+</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <div class="select" id="numBaths">
+
+                                    <select>
+                                        <option value="Select">Select</option>
+                                        <option value="1">1</option>
+                                        <option value="1.5">1.5</option>
+                                        <option value="2">2</option>
+                                        <option value="2.5">2.5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <div class="select" id="priceLow">
+                                    <select class="select" id="priceLow">
+                                        <option>Select</option>
+                                        <option value=300>300</option>
+                                        <option value=500>500</option>
+                                        <option value=700>700</option>
+                                        <option value=900>900</option>
+                                        <option value=1100>1100</option>
+                                        <option value=1300>1300+</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control ">
+                                <div class="select" id="priceHigh">
+                                    <div class="label">
+
+                                        <select>
+                                            <option>Select</option>
+                                            <option value=300>300</option>
+                                            <option value=500>500</option>
+                                            <option value=700>700</option>
+                                            <option value=900>900</option>
+                                            <option value=1100>1100</option>
+                                            <option value=MAX_SAFE_INTEGER>1300</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary" id="searchbtn">Search</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Listing form -->
+    <div class="modal" id="postListingModal">
+        <div class="modal-background" id="postListingModalBG"></div>
+        <div class="modal-content p-6 has-background-primary-light">
+            <h1 class="is-size-3 title has-text-black"><strong>Post A Listing</strong></h1>
+            <form id="ListingForm">
+
+                <div class="field">
+                    <label class="label has-text-black">Location</label>
+                    <div class="control">
+                        <input type="text" class="input" id="buildingName">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label has-text-black">Price</label>
+                    <div class="control">
+                        <input type="text" class="input" id="nPrice">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label has-text-black">Number of Bedrooms</label>
+                    <div class="control">
+                        <input type="text" class="input" id="bBedrooms" placeholder="Studio">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label has-text-black">Bathrooms</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="nBahtrooms">
+                                <option value="1">1</option>
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                                <option value="2.5">2.5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="field">
+                    <p class="has-text-black">Please give details on your listing.</p>
+                    <textarea class="textarea" placeholder="Please provide name of apartment, etc..."
+                        id="desc"></textarea>
+                </div>
+
+                <div class="file has-name is-boxed">
+                    <label class="file-label">
+                        <input class="file-input" type="file" id="animalPictures">
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Upload a Photo
+                            </span>
+                        </span>
+
+                    </label>
+                </div>
+
+                <div class="field is-grouped mt-4">
+                    <div class="control">
+                        <button class="button">Submit</button>
+                    </div>
+                    <div class="control">
+                        <button class="button" id="listingCancel">Finished</button>
+
+                    </div>
+
+                    <div class="control">
+                        <button class="button is-link is-light" id="listingReset">Reset</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <div class="columns is-vcentered">
+
+        <!-- Dynamic Center Column -->
+        <div class="column is ml-6 is-three-fifths" id="center-column">
+
+            <!-- House Box -->
+            <!--             <div class="box">
+                <article class="media">
+                    <div class="columns is-vcentered">
+                        <div class="column is-three-fifths">
+                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/2e/25/da/old-town-by-welcome-apartment.jpg?w=900&h=-1&s=1" alt="Image">
+                        </div>
+                        <div class="column">
+                            <table class="table is-striped is-bordered is-fullwidth">
+                                <tbody>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td>Madison</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bedrooms</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Baths</td>
+                                        <td>1.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>
+                                            $1100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+            <div class="box">
+                <article class="media">
+                    <div class="columns is-vcentered">
+                        <div class="column is-three-fifths">
+                            <img src="https://i.insider.com/5dde948ffd9db26a593ebd49?width=1100&format=jpeg&auto=webp" alt="Image">
+                        </div>
+                        <div class="column">
+                            <table class="table is-striped is-bordered is-fullwidth">
+                                <tbody>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td>Milwaukee</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bedrooms</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Baths</td>
+                                        <td>1.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>
+                                            $900
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+            <div class="box">
+                <article class="media">
+                    <div class="columns is-vcentered">
+                        <div class="column is-three-fifths">
+                            <img src="https://www.brickunderground.com/sites/default/files/styles/blog_primary_image/public/blog/images/Tribeca%20three%20bedroom.png" alt="Image">
+                        </div>
+                        <div class="column">
+                            <table class="table is-striped is-bordered is-fullwidth">
+                                <tbody>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td>Minneapolis</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bedrooms</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Baths</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>
+                                            $1100
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+ -->
+        </div>
+
+
+
+        <!-- Our Misson -->
+        <div class="column is-3 ml-6" id="mission" style="position: fixed; right:5%; bottom:15%;">
+            <article class="message">
+                <div class="message-header">
+                    <p>Our Mission</p>
+                </div>
+                <div class="message-body">
+                    At Subltr, we strive to empower every student to find a home away from home. We
+                    accomplished this by creating intuitive software powered by a network of
+                    students in Wisconsin area. Our goal is to make it possible for anyone to find
+                    their safe space! Welcome to the
+                    community!
+                    <!-- Contact Us button -->
+
+                    <p>
+                        <button class="button mb-4 is-active centered" id="contactbutton">
+                            <p>Contact Us</p>
+                            <span class="icon">
+                                <i class="fas fa-home"></i>
+                            </span>
+                        </button>
+
+                    </p>
+
+                    <div class="modal" id="contactmodal">
+                        <div class="modal-background" id=modalBG></div>
+                        <div class="modal-content p-6 has-background-white">
+                            <h1 class="is-size-3 title">Contact Us!</h1>
+                            <form action="">
+                                <p>Leave your contact information and we will reach out!</p>
+                                <div class="field">
+                                    <label class="label">Name</label>
+                                    <div class="control">
+                                        <input type="text" class="input">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label for="" class="label">Email</label>
+                                    <div class="control">
+                                        <input type="text" class="input">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label for="" class="label">Password</label>
+                                    <div class="control">
+                                        <input type="text" class="input">
+                                    </div>
+                                </div>
+                                <!-- Dropdown for options selection -->
+                                <div class="field">
+                                    <label for="" class="label">Are You an Agent?</label>
+                                    <div class="control">
+                                        <div class="select"></div>
+                                        <select name="" id="">
+                                            <option value="">Select Option</option>
+                                            <option value="">Yes</option>
+                                            <option value="">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field is-grouped">
+                                    <div class="control">
+                                        <button class="button is-link">Submit</button>
+                                    </div>
+                                </div>
+
+                                <!-- Message Box -->
+                                <div class="field">
+                                    <label for="" class="label">Message</label>
+                                    <div class="control">
+                                        <textarea name="textarea" id="" cols="30" rows="10"
+                                            placeholder="Message Here"></textarea>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+
+                        </div>
+                    </div>
+
+
+                </div>
+        </div>
+
+        </article>
+    </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <!-- Signup Modal-->
+    <div class="modal" id="signup-modal">
+        <div class="modal-background" id=signupmodalBG></div>
+        <div class="modal-content p-6 has-background-primary">
+            <h1 class="is-size-3 title has-text-white">Sign Up!</h1>
+            <form id="signup_form" action="">
+
+                <div class="field">
+                    <label for="" class="label has-text-white">Email</label>
+                    <div class="control">
+                        <input type="text" class="input" id="signup_email">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="" class="label has-text-white">Password</label>
+                    <div class="control">
+                        <input type="password" class="input" id="signup_pass">
+                    </div>
+                </div>
+
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-white has-text-primary-dark" id="signup_submit">Submit</button>
+                    </div>
+                </div>
+                <div id="signup_error">
+
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+
+
+    </div>
+    <!-- Signin Modal-->
+    <div class="modal" id="signin-modal">
+        <div class="modal-background" id=signinmodalBG></div>
+        <div class="modal-content p-6 has-background-primary">
+            <h1 class="is-size-3 title has-text-white">Sign In</h1>
+            <form id="signin_form" action="">
+
+                <div class="field">
+                    <label for="" class="label has-text-white">Email</label>
+                    <div class="control">
+                        <input type="text" class="input" id="signin_email">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="" class="label has-text-white">Password</label>
+                    <div class="control">
+                        <input type="password" class="input" id="signin_pass">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-white has-text-primary-dark" id="signin_submit">Submit</button>
+                    </div>
+                </div>
+                <div id="signin_error">
+
+                </div>
+
+
+
+            </form>
+
+        </div>
+    </div>
+
+
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <!--  <script src="/__/firebase/8.4.1/firebase-database.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyApWFvBgiwno_GF9bb2sIL9w3h9WmDx2Iw",
+            authDomain: "subltr.firebaseapp.com",
+            projectId: "subltr",
+            storageBucket: "subltr.appspot.com",
+            messagingSenderId: "106333342361",
+            appId: "1:106333342361:web:5401e777b6c605c2fc4608"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let auth = firebase.auth();
+        let db = firebase.firestore();
+        let store = firebase.storage();
+        let ref = firebase.storage().ref();
+    </script>
+</body>
+<footer class="footer has-background-primary">
+    <div class="content has-text-centered has-text-white is-vcentered ">
+        <div class="navbar-brand ">
+            <span class="icon-text pr-6 title is-1 has-text-white-bis">
+                <span class="icon has-text-white-bis ml-6">
+                    <i class="fas fa-home mdi mdi-48px"></i>
+                </span>
+                <span> Subltr</span>
+            </span>
+
+        </div>
+    </div>
+</footer>
+<style>
+    /* Keeps the background image tame 
+    Bulma Doesn't Have Background image */
+    body {
+        margin: 0;
+        background-color: #cccccc;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center center;
+    }
+
+    .is-hidden {
+        display: none;
+    }
+</style>
+
+<script src="app.js"></script>
+
+</html>
