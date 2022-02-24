@@ -1,4 +1,5 @@
 //NavBar Classes
+// cece added a comment to see if commit works
 let loggedinlinks = document.querySelectorAll(".loggedin");
 let loggedoutlinks = document.querySelectorAll(".loggedout");
 let welcomeUser = document.querySelector("#welcomeUser");
@@ -25,20 +26,21 @@ function configureNav(user) {
     })
   }
 }
+
 function configureContent(empty) {
-if(empty){
-  centerColumn.innerHTML = null;
-}
-    //retrieve data
-db.collection("Listings").get().then((data) =>{
-  let listings = [];
-  data.forEach((listing)=>{
-    listings.push(listing.data());
-  })
-  for(i=0;i<listings.length&&i<4;i++){
-    var item = listings[i];
-    console.log(item);
-    centerColumn.innerHTML += ` 
+  if (empty) {
+    centerColumn.innerHTML = null;
+  }
+  //retrieve data
+  db.collection("Listings").get().then((data) => {
+    let listings = [];
+    data.forEach((listing) => {
+      listings.push(listing.data());
+    })
+    for (i = 0; i < listings.length && i < 4; i++) {
+      var item = listings[i];
+      console.log(item);
+      centerColumn.innerHTML += ` 
     <div class="box">
         <article class="media">
             <div class="columns is-vcentered">
@@ -75,8 +77,8 @@ db.collection("Listings").get().then((data) =>{
                 </div>
             </div>
             </div>`
-  }
-})
+    }
+  })
 }
 /* allows the modal */
 var contact_modal = document.querySelector("#contactmodal");
@@ -135,7 +137,7 @@ listingReset.addEventListener('click', (e) => {
   ListingForm.reset();
 })
 var postListingBG = document.querySelector("#postListingModalBG")
-postListingBG.addEventListener("click", (e)=>{
+postListingBG.addEventListener("click", (e) => {
   e.preventDefault();
   postListingModal.classList.remove('is-active');
 })
@@ -219,7 +221,7 @@ searchbtn.addEventListener('click', (e) => {
       let item = listing.data();
       console.log(item);
       let mismatch = false;
-      
+
       if (location != "Select") {
         empty = false;
         if (item.location != location) {
@@ -251,7 +253,7 @@ searchbtn.addEventListener('click', (e) => {
         }
       }
       if (!mismatch && !empty) {
-matches++;
+        matches++;
         centerColumn.innerHTML += ` 
   <div class="box">
       <article class="media">
@@ -291,26 +293,25 @@ matches++;
           </div>`
       }
     })
-      if (matches==0 && !empty) {
-        centerColumn.innerHTML += `<div class="box">
+    if (matches == 0 && !empty) {
+      centerColumn.innerHTML += `<div class="box">
         <span class="icon has-text-primary-dark">
                     <i class="fas fa-home mdi mdi-48px"></i>
                 </span>
   We're sorry, there are no apartments with those criteria available. Check out some other options below!
 </div>`
-      }
-      if (empty) {
-configureContent(empty);
-      }
-      else{
-        if(matches==0){
-          configureContent(false);
-        }
-
+    }
+    if (empty) {
+      configureContent(empty);
+    } else {
+      if (matches == 0) {
+        configureContent(false);
       }
 
-    })
+    }
+
   })
+})
 var user = firebase.auth().currentUser;
 configureContent();
 auth.onAuthStateChanged((user) => {
@@ -354,7 +355,7 @@ postListingModal.addEventListener(('submit'), (e) => {
           desc: desc,
           location: buildingName,
           desc: desc,
-          price:nPrice,
+          price: nPrice,
           url: url
         })
         .then((x) => {
@@ -366,8 +367,8 @@ postListingModal.addEventListener(('submit'), (e) => {
           console.error("Error adding document: ", error);
         });
     })
-    
-//test
+
+  //test
 
 
 
