@@ -1,5 +1,6 @@
 //NavBar Classes
 // cece added a comment to see if commit works
+//Jesús' comment is better
 let loggedinlinks = document.querySelectorAll(".loggedin");
 let loggedoutlinks = document.querySelectorAll(".loggedout");
 let welcomeUser = document.querySelector("#welcomeUser");
