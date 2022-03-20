@@ -51,105 +51,131 @@
 
 
 <body>
-    <!-- Preference Search Bar
-    <table class="table mt-6 ml-6">
-        <tr>
-            <td>Location</td>
-            <td>Beds</td>
-            <td>Baths</td>
-            <td>Price(Low)</td>
-            <td>Price(High)</td>
-            <td>Search</td>
-        </tr>
-        <tr>
-            <td>
-                <div class="control mr-4">
-                    <div class="select" id="locationSelect">
-                        <select>
-                            <option>Select</option>
-                            <option>Madison</option>
-                            <option>Chicago</option>
-                            <option>Minneapolis</option>
-                            <option>Milwaukee </option>
-                        </select>
+    <!-- Person Search Bar -->
+    <label class="label"></label>
+    <div class="table-container">
+        <table class="table mt-6 ml-6">
+            <tr>
+                <td>Volunteer</td>
+                <td>Client</td>
+                <td>Potential Volunteer</td>
+                <td>Potential Client</td>
+                <td>MADD</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Home Phone</td>
+                <td>Cell Phone</td>
+                <td>Rides</td>
+                <td>Shopping For</td>
+                <td>Shopping With</td>
+                <td>Chores</td>
+                <td>Home Repairs</td>
+                <td>Visit</td>
+                <td>Date Active</td>
+                <td>DOB</td>
+                <td>Birthday</td>
+                <td>Congregation</td>
+                <td>Vaccinated</td>
+                <td>Will NOT get vaccine</td>
+                <td>Prefers Vaccinated Only</td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="isVolunteer">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="isClient">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="isPotVol">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="isPotClie">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="isMADD">
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="First Name" id="firstName">
                     </div>
-                </div>
-            </td>
-            <td>
-                <div class="contro">
-                    <div class="select" id=numBeds>
-                        <select>
-                            <option>Select</option>
-                            <option>Studio</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4+</option>
-                        </select>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Last Name" id="lastName">
                     </div>
-                </div>
-            </td>
-            <td>
-                <div class="control">
-                    <div class="select" id="numBaths">
-
-                        <select>
-                            <option>Select</option>
-                            <option>1.5</option>
-                            <option>2</option>
-                            <option>2.5</option>
-                        </select>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="123-456-7890" id="homePhone">
                     </div>
-                </div>
-            </td>
-            <td>
-                <div class="control">
-                    <div class="select" id="priceLow">
-                        <select class="select" id="priceLow">
-                            <option>Select</option>
-                            <option>300</option>
-                            <option>500</option>
-                            <option>700</option>
-                            <option>900</option>
-                            <option>1100</option>
-                            <option>1300+</option>
-                        </select>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="123-456-7890" id="cellPhone">
                     </div>
-                </div>
-            </td>
-            <td>
-                <div class="control ">
-                    <div class="select" id="priceHigh">
-                        <div class="label">
-
-                            <select>
-                                <option>Select</option>
-                                <option>300</option>
-                                <option>500</option>
-                                <option>700</option>
-                                <option>900</option>
-                                <option>1100</option>
-                                <option>1300+</option>
-                            </select>
-                        </div>
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="rides">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="shoppingFor">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="shoppingWith">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="chores">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="homeRepairs">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="visit">
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="MM/DD/YYYY" id="dateActive">
                     </div>
-                </div>
-            </td>
-            <td>
-                <div class="control">
-                    <button class="button is-primary" id="searchbtn">Submit</button>
-                </div>
-            </td>
-        </tr>
-    </table> -->
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="MM/DD/YYYY" id="dateOfBirth">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:6em;">
+                        <input class="input" type="text" placeholder="MM/DD" id="birthDate">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Enter Text" id="congregation">
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="vaccinated">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="vaccineRefusal">
+                </td>
+                <td style="text-align: center;">
+                    <input type="checkbox" id="vaccinePreferred">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="control">
+                        <button class="button is-primary" id="searchbtn">Submit</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 
 
-
-
-
-
-    <!-- Start of the info columns -->
+    <!-- Appointment Search Bar -->
     <div class="columns">
         <div class="column is-three-fifths ml-6 mt-6">
             <div class="box" style="overflow:auto">
