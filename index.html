@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <title>Eastside Senior Services</title>
     <script src="https://kit.fontawesome.com/5801cc7b40.js" crossorigin="anonymous"></script>
 </head>
@@ -18,9 +18,6 @@
         aria-label="dropdown navigation">
         <div class="navbar-brand ">
             <span class="icon-text pr-6 title is-1 has-text-white-bis">
-                <span class="icon has-text-white-bis ml-6">
-                    <i class="fas fa-home mdi mdi-48px"></i>
-                </span>
                 <span> Eastside Senior Services</span>
 
             </span>
@@ -158,83 +155,37 @@
             <div class="box" style="overflow:auto">
                 <table class="table is-fullwidth">
                     <tr>
-                        <td>Location</td>
-                        <td>Beds</td>
-                        <td>Baths</td>
-                        <td>Price(Low)</td>
-                        <td>Price(High)</td>
+                        <td>Client Name</td>
+                        <td>Volunteer Name</td>
+                        <td>Date</td>
+                        <td>Shorewood</td>
                         <td>Search</td>
                     </tr>
                     <tr>
                         <td>
                             <div class="control">
-                                <div class="select" id="locationSelect">
-                                    <select>
-                                        <option value="Select">Select</option>
-                                        <option value="Madison">Madison</option>
-                                        <option value="Chicago">Chicago</option>
-                                        <option value="Minneapolis">Minneapolis</option>
-                                        <option value="Milwaukee">Milwaukee </option>
-                                    </select>
-                                </div>
+                                <input class="input" type="text" placeholder="Enter Name" id="clientNameSelect">
                             </div>
                         </td>
                         <td>
                             <div class="control">
-                                <div class="select" id=numBeds>
-                                    <select>
-                                        <option value="Select">Select</option>
-                                        <option value="Studio">Studio</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4+</option>
-                                    </select>
-                                </div>
+                                <input class="input" type="text" placeholder="Enter Name" id="volNameSelect">
                             </div>
                         </td>
                         <td>
                             <div class="control">
-                                <div class="select" id="numBaths">
-
-                                    <select>
-                                        <option value="Select">Select</option>
-                                        <option value="1">1</option>
-                                        <option value="1.5">1.5</option>
-                                        <option value="2">2</option>
-                                        <option value="2.5">2.5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="control">
-                                <div class="select" id="priceLow">
-                                    <select class="select" id="priceLow">
-                                        <option>Select</option>
-                                        <option value=300>300</option>
-                                        <option value=500>500</option>
-                                        <option value=700>700</option>
-                                        <option value=900>900</option>
-                                        <option value=1100>1100</option>
-                                        <option value=1300>1300+</option>
-                                    </select>
-                                </div>
+                                <input class="input" type="text" placeholder="MM/DD/YYYY" id="volNameSelect">
                             </div>
                         </td>
                         <td>
                             <div class="control ">
-                                <div class="select" id="priceHigh">
+                                <div class="select" id="Shorewood">
                                     <div class="label">
 
                                         <select>
                                             <option>Select</option>
-                                            <option value=300>300</option>
-                                            <option value=500>500</option>
-                                            <option value=700>700</option>
-                                            <option value=900>900</option>
-                                            <option value=1100>1100</option>
-                                            <option value=MAX_SAFE_INTEGER>1300</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
                                         </select>
                                     </div>
                                 </div>
@@ -459,10 +410,7 @@
     <div class="content has-text-centered has-text-white is-vcentered ">
         <div class="navbar-brand ">
             <span class="icon-text pr-6 title is-1 has-text-white-bis">
-                <span class="icon has-text-white-bis ml-6">
-                    <i class="fas fa-home mdi mdi-48px"></i>
-                </span>
-                <span> Subltr</span>
+                <span> Eastside Senior Services</span>
             </span>
 
         </div>
