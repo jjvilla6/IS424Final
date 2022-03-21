@@ -51,6 +51,60 @@
 
 
 <body>
+    <!-- Appointment Search Bar -->
+    <div class="columns">
+        <div class="column is-three-fifths ml-6 mt-6">
+            <div class="box" style="overflow:auto">
+                <table class="table is-fullwidth">
+                    <tr>
+                        <td>Client Name</td>
+                        <td>Volunteer Name</td>
+                        <td>Date</td>
+                        <td>Shorewood</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Enter Name" id="clientNameSelect">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Enter Name" id="volNameSelect">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="MM/DD/YYYY" id="volNameSelect">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control ">
+                                <div class="select" id="Shorewood">
+                                    <div class="label">
+
+                                        <select>
+                                            <option>Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary" id="searchAptBtn">Search Appointments</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
     <!-- Person Search Bar -->
     <label class="label"></label>
     <div class="table-container">
@@ -166,7 +220,7 @@
             <tr>
                 <td>
                     <div class="control">
-                        <button class="button is-primary" id="searchbtn">Submit</button>
+                        <button class="button is-primary" id="searchPplBtn">Search People</button>
                     </div>
                 </td>
             </tr>
@@ -175,58 +229,7 @@
 
 
 
-    <!-- Appointment Search Bar -->
-    <div class="columns">
-        <div class="column is-three-fifths ml-6 mt-6">
-            <div class="box" style="overflow:auto">
-                <table class="table is-fullwidth">
-                    <tr>
-                        <td>Client Name</td>
-                        <td>Volunteer Name</td>
-                        <td>Date</td>
-                        <td>Shorewood</td>
-                        <td>Search</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Enter Name" id="clientNameSelect">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="Enter Name" id="volNameSelect">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="control">
-                                <input class="input" type="text" placeholder="MM/DD/YYYY" id="volNameSelect">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="control ">
-                                <div class="select" id="Shorewood">
-                                    <div class="label">
 
-                                        <select>
-                                            <option>Select</option>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="control">
-                                <button class="button is-primary" id="searchbtn">Search</button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
 
     <!-- Listing form -->
     <div class="modal" id="postListingModal">
