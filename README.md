@@ -1,4 +1,2 @@
 # IS424Final
-Hello
-Jesús
-Making sure all commit messages are legit
+https://trello.com/b/Xdbyb5Sg/is-424-group-project
