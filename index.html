@@ -258,64 +258,165 @@
                 <div class="field">
                     <label class="label has-text-black">Date of Service</label>
                     <div class="control">
-                        <input type="text" class="input" id="dateOfService">
+                        <input type="text" class="input" id="dateOfService" placeholder="MM/DD/YYYY">
                     </div>
                 </div>
-
                 <div class="field">
-                    <label class="label has-text-black">Bathrooms</label>
+                    <label class="label has-text-black">Time of Ride</label>
                     <div class="control">
-                        <div class="select">
-                            <select id="nBahtrooms">
-                                <option value="1">1</option>
-                                <option value="1.5">1.5</option>
-                                <option value="2">2</option>
-                                <option value="2.5">2.5</option>
-                            </select>
-                        </div>
+                        <input type="text" class="input" id="timeOfRide" placeholder="HH:MM AM/PM">
                     </div>
                 </div>
+                <div class="control ">
+                    <div class="select" id="serviceTypeSelect">
+                        <label class="label">Service Type</label>
 
+                        <select>
+                            <option value="Admin">Admin</option>
+                            <option value="Chores">Chores</option>
+                            <option value="Phone/Letters">Phone/Letters</option>
+                            <option value="Ride">Ride</option>
+                            <option value="SCP">SCP</option>
+                            <option value="Shopping/Errands w/o client">Shopping/Errands w/o client</option>
+                            <option value="Visit">Visit</option>
 
-
-                <div class="field">
-                    <p class="has-text-black">Please give details on your listing.</p>
-                    <textarea class="textarea" placeholder="Please provide name of apartment, etc..."
-                        id="desc"></textarea>
-                </div>
-
-                <div class="file has-name is-boxed">
-                    <label class="file-label">
-                        <input class="file-input" type="file" id="animalPictures">
-                        <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Upload a Photo
-                            </span>
-                        </span>
-
-                    </label>
-                </div>
-
-                <div class="field is-grouped mt-4">
-                    <div class="control">
-                        <button class="button">Submit</button>
-                    </div>
-                    <div class="control">
-                        <button class="button" id="listingCancel">Cancel</button>
-
-                    </div>
-
-                    <div class="control">
-                        <button class="button is-link is-light" id="listingReset">Reset</button>
+                        </select>
                     </div>
                 </div>
+        </div>
+        <div class="control ">
+            <div class="select" id="subServiceTypeSelect">
+                <label class="label">Sub-Service Type</label>
+                <select>
+                    <option value="Admin-Advocacy">Admin-Advocacy</option>
+                    <option value="Admin-Board">Admin-Board</option>
+                    <option value="Admin-Event Assistance">Admin-Event Assistance</option>
+                    <option value="Admin-Financial">Admin-Financial</option>
+                    <option value="Admin-Mailer">Admin-Mailer</option>
+                    <option value="Admin-Ride Coordination">Admin-Ride Coordiniation</option>
+                    <option value="Chores-Repairs">Chores-Repairs</option>
+                    <option value="Chores-Yard Work">Chores-Yard Work</option>
+                    <option value="Phone/Letters-Letters/Cards">Phone/Letters-Letters/Cards</option>
+                    <option value="Ride-Medical">Ride-Medical</option>
+                    <option value="Ride-Personal Business">Ride-Personal Business</option>
+                    <option value="Ride-Shopping">Ride-Shopping</option>
+                    <option value="Ride-Social">Ride-Social</option>
+                    <option value="SCP-Chores">SCP-Chores</option>
+                    <option value="SCP-Respite">SCP-Respite</option>
+                    <option value="SCP-Rides">SCP-Rides</option>
+                    <option value="SCP-Shopping">SCP-Shopping</option>
+                    <option value="SCP-Visit">SCP-Visit</option>
+                    <option value="Shopping/Errands w/o client-Errands Only">Shopping/Errands w/o
+                        client-Errands Only</option>
 
-            </form>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="control ">
+        <div class="select" id="covidAgreementSelect">
+            <label class="label">Covid Agreement?</label>
+            <select>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+    </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Hours Spent</label>
+        <div class="control">
+            <input type="text" class="input" id="hoursSpent">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Ride Units (1 per way)</label>
+        <div class="control">
+            <input type="text" class="input" id="rideUnits">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Miles</label>
+        <div class="control">
+            <input type="text" class="input" id="numMiles">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Destination Name</label>
+        <div class="control">
+            <input type="text" class="input" id="destName">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Destination Address</label>
+        <div class="control">
+            <input type="text" class="input" id="destAddress">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Additional Notes</label>
+        <div class="control">
+            <input type="text" class="input" id="apptAddlNotes">
+        </div>
+    </div>
+    <div class="control ">
+        <div class="select" id="shorewoodSelect">
+            <label class="label">Shorewood</label>
+            <select>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+    </div>
+    </div>
+    <div class="control ">
+        <div class="select" id="cancellationSelect">
+            <label class="label">Cancellation</label>
+            <select>
+                <option value="Driver Cancelled">Driver Cancelled</option>
+                <option value="Rider Cancelled">Rider Cancelled</option>
+                <option value="Short Notice">Short Notice</option>
+                <option value="Unable to Fulfill">Unable to Fulfill</option>
+            </select>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Volunteer Matched with Cancelled Ride</label>
+        <div class="control">
+            <input type="text" class="input" id="cancelledVol">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Month</label>
+        <div class="control">
+            <input type="text" class="input" id="apptMonth">
+        </div>
+    </div>
+    <div class="field">
+        <label class="label has-text-black">Ride Coordinator</label>
+        <div class="control">
+            <input type="text" class="input" id="rideCoordinator">
+        </div>
+    </div>
+    <div class="field is-grouped mt-4">
+        <div class="control">
+            <button class="button">Submit</button>
+        </div>
+        <div class="control">
+            <button class="button" id="listingCancel">Cancel</button>
 
         </div>
+
+        <div class="control">
+            <button class="button is-link is-light" id="listingReset">Reset</button>
+        </div>
+    </div>
+
+    </div>
+
+    </form>
+
+    </div>
     </div>
     <script src="app.js"></script>
 
