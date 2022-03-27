@@ -41,10 +41,10 @@
                     <a id="signoutbtn" class="loggedin has-text-white">Sign Out</a>
                 </div>
                 <div class=" navbar-item">
-                    <a id="postListingBtn" class="loggedin has-text-white">Add Appointment</a>
+                    <a id="addAppointmentBtn" class="loggedin has-text-white">New Appointment</a>
                 </div>
                 <div class=" navbar-item">
-                    <a id="postListingBtn" class="loggedin has-text-white">Add Client/Volunteer</a>
+                    <a id="addPersonBtn" class="loggedin has-text-white">Add Client/Volunteer</a>
                 </div>
             </div>
 
@@ -234,31 +234,31 @@
 
 
 
-    <!-- Listing form -->
-    <div class="modal" id="postListingModal">
-        <div class="modal-background" id="postListingModalBG"></div>
+    <!-- Appointment form -->
+    <div class="modal" id="addAppointmentModal">
+        <div class="modal-background" id="addAppointmentModalBG"></div>
         <div class="modal-content p-6 has-background-primary-light">
-            <h1 class="is-size-3 title has-text-black"><strong>Post A Listing</strong></h1>
-            <form id="ListingForm">
+            <h1 class="is-size-3 title has-text-black"><strong>New Appointment</strong></h1>
+            <form id="appointmentForm">
 
                 <div class="field">
-                    <label class="label has-text-black">Location</label>
+                    <label class="label has-text-black">Client First Name</label>
                     <div class="control">
-                        <input type="text" class="input" id="buildingName">
+                        <input type="text" class="input" id="clientFirstName">
                     </div>
                 </div>
 
                 <div class="field">
-                    <label class="label has-text-black">Price</label>
+                    <label class="label has-text-black">Client Name</label>
                     <div class="control">
-                        <input type="text" class="input" id="nPrice">
+                        <input type="text" class="input" id="clientFullName">
                     </div>
                 </div>
 
                 <div class="field">
-                    <label class="label has-text-black">Number of Bedrooms</label>
+                    <label class="label has-text-black">Date of Service</label>
                     <div class="control">
-                        <input type="text" class="input" id="bBedrooms" placeholder="Studio">
+                        <input type="text" class="input" id="dateOfService">
                     </div>
                 </div>
 
@@ -304,7 +304,7 @@
                         <button class="button">Submit</button>
                     </div>
                     <div class="control">
-                        <button class="button" id="listingCancel">Finished</button>
+                        <button class="button" id="listingCancel">Cancel</button>
 
                     </div>
 
@@ -317,153 +317,6 @@
 
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-    </div>
-
-
-
-    <!-- Signup Modal-->
-    <div class="modal" id="signup-modal">
-        <div class="modal-background" id=signupmodalBG></div>
-        <div class="modal-content p-6 has-background-primary">
-            <h1 class="is-size-3 title has-text-white">Sign Up!</h1>
-            <form id="signup_form" action="">
-
-                <div class="field">
-                    <label for="" class="label has-text-white">Email</label>
-                    <div class="control">
-                        <input type="text" class="input" id="signup_email">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label for="" class="label has-text-white">Password</label>
-                    <div class="control">
-                        <input type="password" class="input" id="signup_pass">
-                    </div>
-                </div>
-
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button class="button is-white has-text-primary-dark" id="signup_submit">Submit</button>
-                    </div>
-                </div>
-                <div id="signup_error">
-
-                </div>
-
-
-            </form>
-
-        </div>
-    </div>
-
-
-    </div>
-    <!-- Signin Modal-->
-    <div class="modal" id="signin-modal">
-        <div class="modal-background" id=signinmodalBG></div>
-        <div class="modal-content p-6 has-background-primary">
-            <h1 class="is-size-3 title has-text-white">Sign In</h1>
-            <form id="signin_form" action="">
-
-                <div class="field">
-                    <label for="" class="label has-text-white">Email</label>
-                    <div class="control">
-                        <input type="text" class="input" id="signin_email">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label for="" class="label has-text-white">Password</label>
-                    <div class="control">
-                        <input type="password" class="input" id="signin_pass">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-white has-text-primary-dark" id="signin_submit">Submit</button>
-                    </div>
-                </div>
-                <div id="signin_error">
-
-                </div>
-
-
-
-            </form>
-
-        </div>
-    </div>
-
-
-    </div>
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
-
-
-
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
-    <!--  <script src="/__/firebase/8.4.1/firebase-database.js"></script> -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
-
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyApWFvBgiwno_GF9bb2sIL9w3h9WmDx2Iw",
-            authDomain: "subltr.firebaseapp.com",
-            projectId: "subltr",
-            storageBucket: "subltr.appspot.com",
-            messagingSenderId: "106333342361",
-            appId: "1:106333342361:web:5401e777b6c605c2fc4608"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        let auth = firebase.auth();
-        let db = firebase.firestore();
-        let store = firebase.storage();
-        let ref = firebase.storage().ref();
-    </script>
-</body>
-<footer class="footer has-background-primary">
-    <div class="content has-text-centered has-text-white is-vcentered ">
-        <div class="navbar-brand ">
-            <span class="icon-text pr-6 title is-1 has-text-white-bis">
-                <span> Eastside Senior Services</span>
-            </span>
-
-        </div>
-    </div>
-</footer>
-<style>
-    /* Keeps the background image tame 
-    Bulma Doesn't Have Background image */
-    body {
-        margin: 0;
-        background-color: #cccccc;
-        background-repeat: no-repeat;
-        background-size: 100%;
-        background-position: center center;
-    }
-
-    .is-hidden {
-        display: none;
-    }
-</style>
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </html>
