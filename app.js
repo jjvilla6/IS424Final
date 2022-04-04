@@ -65,23 +65,78 @@ signinbtn.addEventListener('click', () => {
 signinModalBg.addEventListener('click', () => {
     signinModal.classList.remove('is-active');
 });
+//Contacts
+let addContactModal = document.querySelector('#addContactModal')
+// Adding data to firebase animalID DB
+let contactSubmitBtn = document.querySelector("contactSubmit")
+contactSubmitBtn.addEventListener(('click'), (e) => {
+    e.preventDefault();
+    let newVol = document.querySelector("#isNewVol").value
+    let buildingName = document.querySelector('#buildingName').value;
+    let nPrice = document.querySelector('#nPrice').value;
+    let desc = document.querySelector('#desc').value;
+    let bBedrooms = document.querySelector('#bBedrooms').value;
+    let nBahtrooms = document.querySelector('#nBahtrooms').value;
+    let file = document.querySelector('#animalPictures').files[0];
+    let image = new Date() + "_" + file.name;
+    const task = ref.child(image).put(file);
 
-// Import the functions you need from the SDKs you need
-import {
-    initializeApp
-} from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then((url) => {
+            db.collection("Listings").add({
+                    bath: bBedrooms,
+                    bed: bBedrooms,
+                    desc: desc,
+                    location: buildingName,
+                    desc: desc,
+                    price: nPrice,
+                    url: url
+                })
+                .then((x) => {
+                    console.log("Document written with ID: ", x.id);
+                    ListingForm.reset();
+                    postListingModal.classList.remove('is-active');
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+        })
+})
+//Appointments
+let postListingModal = document.querySelector('#postListingModal')
+// Adding data to firebase animalID DB
+postListingModal.addEventListener(('submit'), (e) => {
+    e.preventDefault();
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyDpKxUFx0U5bEjKSq0xCPWZtd3lyBuMSsA",
-    authDomain: "eastside-senior-services.firebaseapp.com",
-    projectId: "eastside-senior-services",
-    storageBucket: "eastside-senior-services.appspot.com",
-    messagingSenderId: "160756180033",
-    appId: "1:160756180033:web:058ff3188a04b2c5a712c0"
-};
+    let buildingName = document.querySelector('#buildingName').value;
+    let nPrice = document.querySelector('#nPrice').value;
+    let desc = document.querySelector('#desc').value;
+    let bBedrooms = document.querySelector('#bBedrooms').value;
+    let nBahtrooms = document.querySelector('#nBahtrooms').value;
+    let file = document.querySelector('#animalPictures').files[0];
+    let image = new Date() + "_" + file.name;
+    const task = ref.child(image).put(file);
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+    task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then((url) => {
+            db.collection("Listings").add({
+                    bath: bBedrooms,
+                    bed: bBedrooms,
+                    desc: desc,
+                    location: buildingName,
+                    desc: desc,
+                    price: nPrice,
+                    url: url
+                })
+                .then((x) => {
+                    console.log("Document written with ID: ", x.id);
+                    ListingForm.reset();
+                    postListingModal.classList.remove('is-active');
+                })
+                .catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+        })
+})
