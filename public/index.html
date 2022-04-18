@@ -1,89 +1,1068 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.6.10/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.6.10/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.6.10/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <title>Eastside Senior Services</title>
+    <script src="https://kit.fontawesome.com/5801cc7b40.js" crossorigin="anonymous"></script>
+</head>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+
+
+<header class="bg-img ">
+
+    <div id="box" class="navbar is-spaced is-align-self-center has-background-primary" role='navigation'
+        aria-label="dropdown navigation">
+        <div class="navbar-brand ">
+            <span class="icon-text pr-6 title is-1 has-text-white-bis">
+                <span> Eastside Senior Services</span>
+
+            </span>
+
+        </div>
+        <nav class="navbar has-background-primary" role="navigation" aria-label="dropdown navigation">
+
+
+        </nav>
+        <div class="navbar-menu is-active">
+            <div class="navbar-end">
+            </div>
+            <div class="navbar-item" id="welcomeUser">
+            </div>
+            <div class="navbar-item">
+                <a id="signupbtn" class="loggedout has-text-white">Sign Up</a>
+            </div>
+            <div class="navbar-item">
+                <a id="signinbtn" class="loggedout has-text-white">Sign In</a>
+                <div class="navbar-item">
+                    <a id="signoutbtn" class="loggedin has-text-white">Sign Out</a>
+                </div>
+                <div class=" navbar-item">
+                    <a id="addAppointmentBtn" class="loggedin has-text-white">New Appointment</a>
+                </div>
+                <div class=" navbar-item">
+                    <a id="addContactBtn" class="loggedin has-text-white">Add Client/Volunteer</a>
+                </div>
+                <div class=" navbar-item">
+                    <a id="appointmentPageSelect" class="loggedin has-text-white">Search Appointments</a>
+                </div>
+                <div class=" navbar-item">
+                    <a id="personPageSelect" class="loggedin has-text-white">Search Clients/Volunteers</a>
+                </div>
+            </div>
+
+        </div>
+
+</header>
+
+<!-- Signup Modal-->
+<div class="modal" id="signup-modal">
+    <div class="modal-background" id=signupmodalBG></div>
+    <div class="modal-content p-6 has-background-info-light">
+        <h1 class="is-size-3 title">Sign Up</h1>
+        <form id="signup_form" action="">
+
+            <div class="field">
+                <label for="" class="label">Email</label>
+                <div class="control">
+                    <input type="text" class="input" id="signup_email">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="" class="label">Password</label>
+                <div class="control">
+                    <input type="password" class="input" id="signup_pass">
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-white has-text-primary-dark" id="signup_submit">Submit</button>
+                </div>
+            </div>
+            <div id="signup_error">
+
+            </div>
+
+
+        </form>
+
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+</div>
+<!-- Signin Modal-->
+<div class="modal" id="signin-modal">
+    <div class="modal-background" id=signinmodalBG></div>
+    <div class="modal-content p-6 has-background-info-light">
+        <h1 class="is-size-3 title">Sign In</h1>
+        <form id="signin_form" action="">
 
+            <div class="field">
+                <label for="" class="label">Email</label>
+                <div class="control">
+                    <input type="text" class="input" id="signin_email">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="" class="label">Password</label>
+                <div class="control">
+                    <input type="password" class="input" id="signin_pass">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <button class="button is-white has-text-primary-dark" id="signin_submit">Submit</button>
+                </div>
+            </div>
+            <div id="signin_error">
+
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<body>
+    <!-- Appointment Search Bar -->
+    <div class="columns">
+        <div class="column ml-6 mt-6">
+            <div class="table-container" id="appointmentSearch">
+                <table class="table is-fullwidth">
+                    <tr>
+                        <td>Client Name</td>
+                        <td>Volunteer Name</td>
+                        <td>Start Date</td>
+                        <td>End Date</td>
+                        <td>Shorewood</td>
+                        <td>
+                            <div class="control" style="width:8em;">
+                                <input class="input" type="text" placeholder="Enter Column Name" id="otherCol3">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control" style="width:8em;">
+                                <input class="input" type="text" placeholder="Enter Column name" id="otherCol4">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Enter Name" id="clientNameSelect">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Enter Name" id="volNameSelect">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="MM/DD/YYYY" id="appointmentStartDate">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="MM/DD/YYYY" id="appointmentEndDate">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control ">
+                                <div class="select" id="Shorewood">
+                                    <div class="label">
+
+                                        <select>
+                                            <option>Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control" style="width:8em;">
+                                <input class="input" type="text" placeholder="Enter Search Value" id="otherSearch3">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control" style="width:8em;">
+                                <input class="input" type="text" placeholder="Enter Search Value" id="otherSearch4">
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary" id="searchAptBtn">Search Appointments</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Person Search Bar -->
+    <div class="table-container" id="peopleSearch">
+        <table class="table mt-6 ml-6">
+            <tr>
+                <td>Volunteer</td>
+                <td>Client</td>
+                <td>Potential Volunteer</td>
+                <td>Potential Client</td>
+                <td>MADD</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Home Phone</td>
+                <td>Cell Phone</td>
+                <td>Rides</td>
+                <td>Shopping For</td>
+                <td>Shopping With</td>
+                <td>Chores</td>
+                <td>Home Repairs</td>
+                <td>Visit</td>
+                <td>Date Active Start Date</td>
+                <td>Date Active End Date</td>
+                <td>DOB Start Date</td>
+                <td>DOB End Date</td>
+                <td>Birthday Start Date</td>
+                <td>Birthday End Date</td>
+                <td>Congregation</td>
+                <td>Vaccinated</td>
+                <td>Will NOT get vaccine</td>
+                <td>Prefers Vaccinated Only</td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Enter Column Name" id="otherCol1">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Enter Column name" id="otherCol2">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="isVolunteer">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="isClient">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="isPotVol">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="isPotClie">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="isMADD">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="First Name" id="firstName">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Last Name" id="lastName">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="123-456-7890" id="homePhone">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="123-456-7890" id="cellPhone">
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="rides">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="shoppingFor">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="shoppingWith">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="chores">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="homeRepairs">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="visit">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="MM/DD/YYYY" id="dateActiveStart">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="MM/DD/YYYY" id="dateActiveEnd">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:6em;">
+                        <input class="input" type="text" placeholder="MM/DD" id="dateOfBirthStart">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="MM/DD/YYYY" id="dateOfBirthEnd">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="MM/DD/YYYY" id="birthDateStart">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:6em;">
+                        <input class="input" type="text" placeholder="MM/DD" id="birthDateEnd">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Enter Text" id="congregation">
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="vaccinated">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="vaccineRefusal">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="control ">
+                        <div class="select" id="vaccinePreferred">
+                            <select>
+                                <option>Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Enter Search Value" id="otherSearch1">
+                    </div>
+                </td>
+                <td>
+                    <div class="control" style="width:8em;">
+                        <input class="input" type="text" placeholder="Enter Search Value" id="otherSearch2">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="control">
+                        <button class="button is-primary" id="searchPplBtn">Search People</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+
+
+    <!-- Appointment form -->
+    <div class="modal" id="addAppointmentModal">
+        <div class="modal-background" id="addAppointmentModalBG"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <h1 class="is-size-3 title has-text-black"><strong>New Appointment</strong></h1>
+                <span></span>
+                <div class="control">
+                    <button class="button is-link is-light" id="appointmentReset">Reset</button>
+                </div>
+            </header>
+
+            <section class="modal-card-body">
+                <form id="appointmentForm">
+                    <div class="field">
+                        <label class="label has-text-black">Client First Name</label>
+                        <div class="control">
+                            <input type="text" class="input" id="clientFirstName">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label has-text-black">Client Name</label>
+                        <div class="control">
+                            <input type="text" class="input" id="clientFullName">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="label has-text-black">Date of Service</label>
+                        <div class="control">
+                            <input type="text" class="input" id="dateOfService" placeholder="MM/DD/YYYY">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Time of Ride</label>
+                        <div class="control">
+                            <input type="text" class="input" id="timeOfRide" placeholder="HH:MM AM/PM">
+                        </div>
+                    </div>
+                    <label class="label">Service Type</label>
+                    <div class="control ">
+                        <div class="select" id="serviceTypeSelect">
+
+                            <select>
+                                <option value="Admin">Admin</option>
+                                <option value="Chores">Chores</option>
+                                <option value="Phone/Letters">Phone/Letters</option>
+                                <option value="Ride">Ride</option>
+                                <option value="SCP">SCP</option>
+                                <option value="Shopping/Errands w/o client">Shopping/Errands w/o client</option>
+                                <option value="Visit">Visit</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="label">Sub-Service Type</label>
+                    <div class="control ">
+                        <div class="select" id="subServiceTypeSelect">
+                            <select>
+                                <option value="Admin-Advocacy">Admin-Advocacy</option>
+                                <option value="Admin-Board">Admin-Board</option>
+                                <option value="Admin-Event Assistance">Admin-Event Assistance</option>
+                                <option value="Admin-Financial">Admin-Financial</option>
+                                <option value="Admin-Mailer">Admin-Mailer</option>
+                                <option value="Admin-Ride Coordination">Admin-Ride Coordiniation</option>
+                                <option value="Chores-Repairs">Chores-Repairs</option>
+                                <option value="Chores-Yard Work">Chores-Yard Work</option>
+                                <option value="Phone/Letters-Letters/Cards">Phone/Letters-Letters/Cards</option>
+                                <option value="Ride-Medical">Ride-Medical</option>
+                                <option value="Ride-Personal Business">Ride-Personal Business</option>
+                                <option value="Ride-Shopping">Ride-Shopping</option>
+                                <option value="Ride-Social">Ride-Social</option>
+                                <option value="SCP-Chores">SCP-Chores</option>
+                                <option value="SCP-Respite">SCP-Respite</option>
+                                <option value="SCP-Rides">SCP-Rides</option>
+                                <option value="SCP-Shopping">SCP-Shopping</option>
+                                <option value="SCP-Visit">SCP-Visit</option>
+                                <option value="Shopping/Errands w/o client-Errands Only">Shopping/Errands w/o
+                                    client-Errands Only</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <label class="label">Covid Agreement?</label>
+                    <div class="control ">
+                        <div class="select" id="covidAgreementSelect">
+                            <select>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Hours Spent</label>
+                        <div class="control">
+                            <input type="text" class="input" id="hoursSpent">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Ride Units (1 per way)</label>
+                        <div class="control">
+                            <input type="text" class="input" id="rideUnits">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Miles</label>
+                        <div class="control">
+                            <input type="text" class="input" id="numMiles">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Destination Name</label>
+                        <div class="control">
+                            <input type="text" class="input" id="destName">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Destination Address</label>
+                        <div class="control">
+                            <input type="text" class="input" id="destAddress">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Additional Notes</label>
+                        <div class="control">
+                            <input type="text" class="input" id="apptAddlNotes">
+                        </div>
+                    </div>
+                    <label class="label">Shorewood</label>
+                    <div class="control ">
+                        <div class="select" id="shorewoodSelect">
+                            <select>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <label class="label">Cancellation</label>
+                    <div class="control ">
+                        <div class="select" id="cancellationSelect">
+                            <select>
+                                <option value="Driver Cancelled">Driver Cancelled</option>
+                                <option value="Rider Cancelled">Rider Cancelled</option>
+                                <option value="Short Notice">Short Notice</option>
+                                <option value="Unable to Fulfill">Unable to Fulfill</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Volunteer Matched with Cancelled Ride</label>
+                        <div class="control">
+                            <input type="text" class="input" id="cancelledVol">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Month</label>
+                        <div class="control">
+                            <input type="text" class="input" id="apptMonth">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Ride Coordinator</label>
+                        <div class="control">
+                            <input type="text" class="input" id="rideCoordinator">
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <div class="field is-grouped mt-4">
+                    <div class="control">
+                        <button class="button" id="appointmentSubmit">Submit</button>
+                    </div>
+                    <div class="control">
+                        <button class="button" id="appointmentCancel">Cancel</button>
+
+                    </div>
+
+
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!--Contact Form-->
+
+    <div class="modal" id="addContactModal">
+        <div class="modal-background" id="addContactModalBG"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <h1 class="is-size-3 title has-text-black"><strong>New Contact</strong></h1>
+                <span></span>
+                <div class="control">
+                    <button class="button is-link is-light" id="contactReset">Reset</button>
+                </div>
+            </header>
+            <section class="modal-card-body">
+                <form id="contactForm">
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewVol">
+                        Volunteer
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewClient">
+                        Client
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewBirthdayList">
+                        Birthday List
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewDonor">
+                        Donor
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewCommunityContact">
+                        Community Contact
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewPotVolunteer">
+                        Potential Volunteer
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewPotClient">
+                        Potential Client
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewMADD">
+                        MADD
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewSDC">
+                        SDC
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewLoanCloset">
+                        Loan Closet
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewBoswell">
+                        Boswell's Volunteer
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="isNewEventAttendee">
+                        Event Attendee
+                    </label>
+                    <label class="label">Status A/I/NA</label>
+                    <div class="control ">
+                        <div class="select" id="newContactStatus">
+
+                            <select>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="NA">NA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Last Name</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newLastName">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">First Name</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newFirstName">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Organization</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newOrganization">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Address</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newAddress">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">City</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newCity">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">State</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newState">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Zip</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newZip">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Home Phone</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newHomePhone" placeholder="###-###-####">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Cell Phone</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newCellPhone" placeholder="###-###-####">
+                        </div>
+                    </div>
+                    <label class="label">Texting?</label>
+                    <div class="control ">
+                        <div class="select" id="newContactStatus">
+                            <select>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Email</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newEmail">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Preferred Method of Contact</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newPreferredMethod">
+                        </div>
+                    </div>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newRides">
+                        Rides
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newShoppingFor">
+                        Shopping For
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newShoppingWith">
+                        Shopping With
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newChores">
+                        Chores
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newHomeRepairs">
+                        Home Repairs
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newVisits">
+                        Visits
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newCalls">
+                        Calls
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newAdmin">
+                        Admin
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newI&A">
+                        I&A
+                    </label>
+                    <div class="field">
+                        <label class="label has-text-black">Service Comments</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newServiceComments">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Date Active</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newDateActive" placeholder="MM/DD/YYYY">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Date Inactive</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newDateInactive" placeholder="MM/DD/YYYY">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Reason Active</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newReasonInactive">
+                        </div>
+
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">DOB</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newDOB" placeholder="MM/DD/YYYY">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Birthday</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newBirthday" placeholder="MM/DD">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Gender</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newGender">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Birthday</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newBirthday" placeholder="MM/DD">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Marital Status</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newMaritalStatus">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Lives With</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newLivesWith">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Veteran</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newVeteran">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Race</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newRace">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Ethnicity</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newEthnicity">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Below Poverty Level</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newBelowPovertyLevel">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Emergency Contact 1</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newEmergencyContact1">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Emergency Contact 1 Phone</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newEmergencyPhone1">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Emergency Contact 2</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newEmergencyContact2">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Emergency Contact 2 Phone</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newEmergencyPhone2">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Congregation</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newCongregation">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">How Did You Hear About Us?</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newHDYH">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Consent to Photo?</label>
+                        <div class="control">
+                            <input type="text" class="input" id="Consent to photo?">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Other regular volunteer</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newOtherRegVol">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label has-text-black">Potential Volunteer?</label>
+                        <div class="control">
+                            <input type="text" class="input" id="newPotVolunteerText">
+                        </div>
+                    </div>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newDoNotMail">
+                        Do Not Mail/Do Not Contact
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newIncPaperwork">
+                        Incomplete Paperwork
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="fullyVaccinated">
+                        Fully Vaccinated
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newNoVaccine">
+                        Will NOT get vaccine
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" id="newPrefersVaccinated">
+                        Prefers Vaccinated Only
+                    </label>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <div class="field is-grouped mt-4">
+                    <div class="control">
+                        <button class="button" id="contactSubmit">Submit</button>
+                    </div>
+                    <div class="control">
+                        <button class="button" id="contactCancel">Cancel</button>
+                    </div>
+
+
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // Import the functions you need from the SDKs you need
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDpKxUFx0U5bEjKSq0xCPWZtd3lyBuMSsA",
+            authDomain: "eastside-senior-services.firebaseapp.com",
+            projectId: "eastside-senior-services",
+            storageBucket: "eastside-senior-services.appspot.com",
+            messagingSenderId: "160756180033",
+            appId: "1:160756180033:web:058ff3188a04b2c5a712c0"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let auth = firebase.auth();
+        let db = firebase.database().ref();
+
+        // define a storage reference
+        let ref = firebase.storage().ref();
     </script>
-  </body>
+    <script src="app.js"></script>
+
 </html>
