@@ -1,5 +1,5 @@
 // New Appointment Button
-var addAppointmentBtn = document.querySelector("#addAppointmentBtn");
+/*var addAppointmentBtn = document.querySelector("#addAppointmentBtn");
 addAppointmentBtn.addEventListener('click', (e) => {
     var appointmentForm = document.querySelector("#appointmentForm");
     // show modal
@@ -44,6 +44,7 @@ addContactModalBG.addEventListener("click", (e) => {
     e.preventDefault();
     addContactModal.classList.remove('is-active');
 })
+*/
 //Signupbtn Functionality
 let signupbtn = document.querySelector('#signupbtn');
 let signupModal = document.querySelector('#signup-modal');
@@ -66,44 +67,8 @@ signinModalBg.addEventListener('click', () => {
     signinModal.classList.remove('is-active');
 });
 //Contacts
-let addContactModal = document.querySelector('#addContactModal')
-// Adding data to firebase animalID DB
-let contactSubmitBtn = document.querySelector("#contactSubmit")
-contactSubmitBtn.addEventListener(('click'), (e) => {
-    e.preventDefault();
-    let newVol = document.querySelector("#isNewVol").value
-    let buildingName = document.querySelector('#buildingName').value;
-    let nPrice = document.querySelector('#nPrice').value;
-    let desc = document.querySelector('#desc').value;
-    let bBedrooms = document.querySelector('#bBedrooms').value;
-    let nBathrooms = document.querySelector('#nBahtrooms').value;
-    let file = document.querySelector('#animalPictures').files[0];
-    let image = new Date() + "_" + file.name;
-    const task = ref.child(image).put(file);
 
-    task
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then((url) => {
-            db.collection("Listings").add({
-                    bath: bBedrooms,
-                    bed: bBedrooms,
-                    desc: desc,
-                    location: buildingName,
-                    desc: desc,
-                    price: nPrice,
-                    url: url
-                })
-                .then((x) => {
-                    console.log("Document written with ID: ", x.id);
-                    ListingForm.reset();
-                    postListingModal.classList.remove('is-active');
-                })
-                .catch((error) => {
-                    console.error("Error adding document: ", error);
-                });
-        })
-})
-//Appointments 
+//Access Appointments 
 db.child("1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss").child("Pending").get().then((snapshot) => {
     if (snapshot.exists()) {
         console.log(snapshot.val());
@@ -113,4 +78,13 @@ db.child("1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss").child("Pending").get().
 }).catch((error) => {
     console.error(error);
 });
-//People
+// Access People
+people_db.child("1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE").child("Sheet1").get().then((snapshot) => {
+    if (snapshot.exists()) {
+        console.log(snapshot.val());
+    } else {
+        console.log("No data available");
+    }
+}).catch((error) => {
+    console.error(error);
+});

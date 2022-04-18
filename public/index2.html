@@ -981,6 +981,24 @@
 
         // define a storage reference
         let ref = firebase.storage().ref();
+
+        //Secondary Project
+        const peopleFirebaseConfig = {
+            apiKey: "AIzaSyCOCJadAUbTrLP4h4oWTU3Y-lhl7TNWinY",
+            authDomain: "eastside-senior-services-ppl.firebaseapp.com",
+            projectId: "eastside-senior-services-ppl",
+            storageBucket: "eastside-senior-services-ppl.appspot.com",
+            messagingSenderId: "230757905799",
+            appId: "1:230757905799:web:61fa0c28eda143bca20f22"
+        };
+
+        // Initialize Firebase
+        const secondaryApp = firebase.initializeApp(peopleFirebaseConfig, "secondary");
+        let people_auth = secondaryApp.auth();
+        let people_db = secondaryApp.database().ref();
+
+        // define a storage reference
+        let people_ref = secondaryApp.storage().ref();
     </script>
     <script src="app.js"></script>
 

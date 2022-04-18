@@ -211,7 +211,7 @@
             </div>
         </div>
     </div>
-    <!-- Person Search Bar -->
+    <!-- Person Search Bar
     <div class="table-container" id="peopleSearch">
         <table class="table mt-6 ml-6">
             <tr>
@@ -482,7 +482,7 @@
         </table>
     </div>
 
-
+-->
 
 
 
@@ -672,7 +672,7 @@
             </footer>
         </div>
     </div>
-    <!--Contact Form-->
+    <!--People Search
 
     <div class="modal" id="addContactModal">
         <div class="modal-background" id="addContactModalBG"></div>
@@ -1031,6 +1031,7 @@
             </footer>
         </div>
     </div>
+-->
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <!-- Add Firebase products that you want to use -->
@@ -1059,7 +1060,25 @@
         let db = firebase.database().ref();
 
         // define a storage reference
+
+        //Secondary Project
         let ref = firebase.storage().ref();
+        const peopleFirebaseConfig = {
+            apiKey: "AIzaSyCOCJadAUbTrLP4h4oWTU3Y-lhl7TNWinY",
+            authDomain: "eastside-senior-services-ppl.firebaseapp.com",
+            projectId: "eastside-senior-services-ppl",
+            storageBucket: "eastside-senior-services-ppl.appspot.com",
+            messagingSenderId: "230757905799",
+            appId: "1:230757905799:web:61fa0c28eda143bca20f22"
+        };
+
+        // Initialize Firebase
+        const secondaryApp = firebase.initializeApp(peopleFirebaseConfig, "secondary");
+        let people_auth = secondaryApp.auth();
+        let people_db = secondaryApp.database().ref();
+
+        // define a storage reference
+        let people_ref = secondaryApp.storage().ref();
     </script>
     <script src="app.js"></script>
 
