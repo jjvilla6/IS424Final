@@ -1,3 +1,18 @@
+let appointmentValues = {}
+let personValues = {}
+//Make All references #TODO
+//Assign Reference to respective list #TODO
+
+//Loop through values #TODO
+
+//Function to search through entries to find matches #TODO
+
+//Get all values of specified field #TODO
+
+//Create table displaying all values #TODO
+
+
+
 // New Appointment Button
 /*var addAppointmentBtn = document.querySelector("#addAppointmentBtn");
 addAppointmentBtn.addEventListener('click', (e) => {
