@@ -73,21 +73,38 @@ personValues[pplOtherVal1] = pplOtherSearch1;
 let pplOtherSearch2 = document.querySelector("#otherSearch1");
 personValues[pplOtherVal2] = pplOtherSearch2;
 
-
+//Write function to loop through and return list of matching
 let pplSearchBtn = document.querySelector('#searchPplBtn');
 pplSearchBtn.addEventListener('click', () => {
+    //Call function to search PPL
     console.log(pplDateActiveStart.value, typeof pplDateActiveStart.value);
 });
 
-//Loop through values #TODO
+let searchAptBtn = document.querySelector('#searchAptBtn');
+searchAptBtn.addEventListener('click', () => {
+    //Call function to search appts
+    console.log(pplDateActiveStart.value, typeof pplDateActiveStart.value);
+});
+
 
 //Function to search through entries to find matches #TODO
+function databaseSearch(searchValues) {
+    results = null;
 
+    return results;
+}
 //Get all values of specified field #TODO
 
-//Create table displaying all values #TODO
+//Create table displaying all appt values #TODO
+resultTable.innerHTML = `<table> <tr> <td>`
+databaseSearch().forEach(element => {
 
+});
+//Create table displaying all ppl values #TODO
+resultTable.innerHTML = `<table> <tr> <td>`
+databaseSearch().forEach(element => {
 
+});
 
 // New Appointment Button
 /*var addAppointmentBtn = document.querySelector("#addAppointmentBtn");
