@@ -78,7 +78,6 @@ let pplSearchBtn = document.querySelector('#searchPplBtn');
 pplSearchBtn.addEventListener('click', () => {
     console.log(pplDateActiveStart.value, typeof pplDateActiveStart.value);
 });
-//Assign Reference to respective list #TODO
 
 //Loop through values #TODO
 
