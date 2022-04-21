@@ -105,6 +105,7 @@ resultTable.innerHTML = `<table> <tr> <td>`
 databaseSearch().forEach(element => {
 
 });
+//Create authorization stuff
 
 // New Appointment Button
 /*var addAppointmentBtn = document.querySelector("#addAppointmentBtn");
