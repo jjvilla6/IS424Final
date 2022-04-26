@@ -73,6 +73,8 @@ personValues[pplOtherVal1] = pplOtherSearch1;
 let pplOtherSearch2 = document.querySelector("#otherSearch1");
 personValues[pplOtherVal2] = pplOtherSearch2;
 
+
+
 //Write function to loop through and return list of matching
 let pplSearchBtn = document.querySelector('#searchPplBtn');
 pplSearchBtn.addEventListener('click', () => {
@@ -187,6 +189,7 @@ addContactModalBG.addEventListener("click", (e) => {
     addContactModal.classList.remove('is-active');
 })
 */
+/*
 //Signupbtn Functionality
 let signupbtn = document.querySelector('#signupbtn');
 let signupModal = document.querySelector('#signup-modal');
@@ -197,6 +200,7 @@ signupbtn.addEventListener('click', () => {
 signupModalBg.addEventListener('click', () => {
     signupModal.classList.remove('is-active');
 });
+*/
 //Sign-inModal Functionality
 let signinbtn = document.querySelector('#signinbtn');
 let signinModal = document.querySelector('#signin-modal');
