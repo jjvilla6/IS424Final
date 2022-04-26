@@ -90,8 +90,15 @@ searchAptBtn.addEventListener('click', () => {
 //Function to search through entries to find matches #TODO
 function databaseSearch(searchValues) {
     results = null;
+    curr_values = [];
+    for (let i in searchValues) {
+        curr_values = getMatches(i, searchValues[i], curr_values);
+    }
+    return curr_values;
+}
 
-    return results;
+function getMatches(key, value, list) {
+
 }
 //Get all values of specified field #TODO
 
@@ -106,7 +113,33 @@ databaseSearch().forEach(element => {
 
 });
 //Create authorization stuff
+signin_form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    signin_error.innerHTML = "";
+    let email = document.querySelector("#signin_email").value;
+    let password = document.querySelector("#signin_pass").value;
+    console.log(email, password);
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed in
+            var user_cred = userCredential.user;
+            console.log("Sign-in complete!");
+            signinModal.classList.remove('is-active');
+            signin_form.reset();
+            configureNav(user_cred);
+            // ...
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            signin_error.innerHTML = `<p> ${errorMessage} </p>`
 
+        });
+})
+let signoutbtn = document.querySelector("#signoutbtn");
+signoutbtn.addEventListener('click', (e) => {
+    auth.signOut();
+});
 // New Appointment Button
 /*var addAppointmentBtn = document.querySelector("#addAppointmentBtn");
 addAppointmentBtn.addEventListener('click', (e) => {
