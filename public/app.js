@@ -76,12 +76,12 @@ personValues[pplOtherVal2] = pplOtherSearch2;
 
 
 //Write function to loop through and return list of matching
-let pplSearchBtn = document.querySelector('#searchPplBtn');
+/*let pplSearchBtn = document.querySelector("#pplSearchBtn");
 pplSearchBtn.addEventListener('click', () => {
     //Call function to search PPL
     console.log(pplDateActiveStart.value, typeof pplDateActiveStart.value);
 });
-
+*/
 let searchAptBtn = document.querySelector('#searchAptBtn');
 searchAptBtn.addEventListener('click', () => {
     //Call function to search appts
@@ -105,9 +105,31 @@ function getMatches(key, value, list) {
 //Get all values of specified field #TODO
 
 //Create table displaying all appt values #TODO
-resultTable.innerHTML = `<table> <tr> <td>`
+resultTable.innerHTML = `       <tr>
+<td>id</td>
+<td>Joan Notified</td>
+<td>Client First Name</td>
+<td>Client Name</td>
+<td>Date of Service</td>
+<td>Time of Ride</td>
+<td>Volunteer Name</td>
+<td>Service Type</td>
+<td>Sub-Service Type</td>
+<td>COVID Agreement</td>
+<td>Hours Spent</td>
+<td>Ride Units</td>
+<td>Miles</td>
+<td>Destination Name</td>
+<td>Destination Address</td>
+<td>Additional Notes</td>
+<td>Shorewood</td>
+<td>Cancellation Reason</td>
+<td>Volunteer Matched with Cancelled Ride</td>
+<td>Month</td>
+<td>Ride Coordinator</td>
+</tr>`;
 databaseSearch().forEach(element => {
-
+    resultTable.innterHTML += ``;
 });
 //Create table displaying all ppl values #TODO
 resultTable.innerHTML = `<table> <tr> <td>`
@@ -234,3 +256,38 @@ people_db.child("1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE").child("Sheet1").
 }).catch((error) => {
     console.error(error);
 });
+
+/*db.on('value', (snapshot) => {
+    console.log(snapshot.val());
+})
+
+fetch(DBURL)
+    .then(response => response.json())
+    .then()
+    */
+
+//Appointment
+try {
+    get(child(db, `Pending`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            console.log(snapshot.val());
+        } else {
+            console.log("No data available");
+        }
+    });
+} catch (ReferenceError) {
+
+}
+
+//People
+try {
+    get(child(people_db, `Sheet1`)).then((snapshot) => {
+        if (snapshot.exists()) {
+            console.log(snapshot.val());
+        } else {
+            console.log("No data available");
+        }
+    });
+} catch (ReferenceError) {
+
+}
