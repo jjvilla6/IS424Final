@@ -73,10 +73,7 @@ personValues[pplOtherVal1] = pplOtherSearch1;
 let pplOtherSearch2 = document.querySelector("#otherSearch1");
 personValues[pplOtherVal2] = pplOtherSearch2;
 
-
-
-//Write function to loop through and return list of matching
-let pplSearchBtn = document.querySelector("#pplSearchBtn");
+let pplSearchBtn = document.querySelector('#pplSearchBtn');
 pplSearchBtn.addEventListener('click', () => {
     //Call function to search PPL
     console.log(pplDateActiveStart.value, typeof pplDateActiveStart.value);
