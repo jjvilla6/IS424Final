@@ -73,16 +73,24 @@ personValues[pplOtherVal1] = pplOtherSearch1;
 let pplOtherSearch2 = document.querySelector("#otherSearch1");
 personValues[pplOtherVal2] = pplOtherSearch2;
 
-let pplSearchBtn = document.querySelector('#pplSearchBtn');
-pplSearchBtn.addEventListener('click', () => {
-    //Call function to search PPL
-    console.log(pplDateActiveStart.value, typeof pplDateActiveStart.value);
-});
-let searchAptBtn = document.querySelector('#searchAptBtn');
-searchAptBtn.addEventListener('click', () => {
-    //Call function to search appts
-    console.log(pplDateActiveStart.value, typeof pplDateActiveStart.value);
-});
+try {
+    let pplSearchBtn = document.querySelector('#pplSearchBtn');
+    pplSearchBtn.addEventListener('click', () => {
+        getDatabaseSnapshot(people_db);
+    });
+} catch (TypeError) {
+
+}
+try {
+    let searchAptBtn = document.querySelector('#searchAptBtn');
+    searchAptBtn.addEventListener('click', () => {
+        //Call function to search appts
+        getDatabaseSnapshot(db);
+    });
+} catch (TypeError) {
+
+}
+
 
 
 //Function to search through entries to find matches #TODO
@@ -263,27 +271,16 @@ fetch(DBURL)
     */
 
 //Appointment
-try {
-    get(child(db, `Pending`)).then((snapshot) => {
-        if (snapshot.exists()) {
-            console.log(snapshot.val());
-        } else {
-            console.log("No data available");
-        }
-    });
-} catch (ReferenceError) {
+function getDatabaseSnapshot(dbRef) {
+    try {
+        get(child(dbRef, `Pending`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+            } else {
+                console.log("No data available");
+            }
+        });
+    } catch (ReferenceError) {
 
-}
-
-//People
-try {
-    get(child(people_db, `Sheet1`)).then((snapshot) => {
-        if (snapshot.exists()) {
-            console.log(snapshot.val());
-        } else {
-            console.log("No data available");
-        }
-    });
-} catch (ReferenceError) {
-
+    }
 }
