@@ -76,7 +76,8 @@ personValues[pplOtherVal2] = pplOtherSearch2;
 try {
     let pplSearchBtn = document.querySelector('#pplSearchBtn');
     pplSearchBtn.addEventListener('click', () => {
-        getDatabaseSnapshot(people_db);
+        ppl_data = getDatabaseSnapshot(people_db, `Sheet1`);
+        databaseSearch(personValues, ppl_data, "People");
     });
 } catch (TypeError) {
 
@@ -85,7 +86,8 @@ try {
     let searchAptBtn = document.querySelector('#searchAptBtn');
     searchAptBtn.addEventListener('click', () => {
         //Call function to search appts
-        getDatabaseSnapshot(db);
+        appt_data = getDatabaseSnapshot(db, `Pending`);
+        databaseSearch(appointmentValues, appt_data, "Appointments");
     });
 } catch (TypeError) {
 
@@ -94,13 +96,14 @@ try {
 
 
 //Function to search through entries to find matches #TODO
-function databaseSearch(searchValues) {
-    results = null;
-    curr_values = [];
+function databaseSearch(searchValues, data, type) {
+    curr_values = data;
     for (let i in searchValues) {
-        curr_values = getMatches(i, searchValues[i], curr_values);
+        //curr_values = getMatches(i, searchValues[i], curr_values);
+        curr_values = searchValues[i].value;
+        console.log(curr_values);
     }
-    return curr_values;
+    return curr_values, type;
 }
 
 function getMatches(key, value, list) {
@@ -132,14 +135,18 @@ resultTable.innerHTML = `       <tr>
 <td>Month</td>
 <td>Ride Coordinator</td>
 </tr>`;
-databaseSearch().forEach(element => {
-    resultTable.innterHTML += ``;
-});
-//Create table displaying all ppl values #TODO
-resultTable.innerHTML = `<table> <tr> <td>`
-databaseSearch().forEach(element => {
 
-});
+function createTable(data, type) {
+    databaseSearch().forEach(element => {
+        resultTable.innterHTML += ``;
+    });
+    //Create table displaying all ppl values #TODO
+    resultTable.innerHTML = `<table> <tr> <td>`
+    databaseSearch().forEach(element => {
+
+    });
+}
+
 //Create authorization stuff
 signin_form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -271,11 +278,11 @@ fetch(DBURL)
     */
 
 //Appointment
-function getDatabaseSnapshot(dbRef) {
+function getDatabaseSnapshot(dbRef, docName) {
     try {
-        get(child(dbRef, `Pending`)).then((snapshot) => {
+        get(child(dbRef, docName)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
+                return snapshot.val();
             } else {
                 console.log("No data available");
             }
