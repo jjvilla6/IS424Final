@@ -112,39 +112,125 @@ function getMatches(key, value, list) {
 //Get all values of specified field #TODO
 
 //Create table displaying all appt values #TODO
-resultTable.innerHTML = `       <tr>
-<td>id</td>
-<td>Joan Notified</td>
-<td>Client First Name</td>
-<td>Client Name</td>
-<td>Date of Service</td>
-<td>Time of Ride</td>
-<td>Volunteer Name</td>
-<td>Service Type</td>
-<td>Sub-Service Type</td>
-<td>COVID Agreement</td>
-<td>Hours Spent</td>
-<td>Ride Units</td>
-<td>Miles</td>
-<td>Destination Name</td>
-<td>Destination Address</td>
-<td>Additional Notes</td>
-<td>Shorewood</td>
-<td>Cancellation Reason</td>
-<td>Volunteer Matched with Cancelled Ride</td>
-<td>Month</td>
-<td>Ride Coordinator</td>
-</tr>`;
 
 function createTable(data, type) {
-    databaseSearch().forEach(element => {
-        resultTable.innterHTML += ``;
-    });
-    //Create table displaying all ppl values #TODO
-    resultTable.innerHTML = `<table> <tr> <td>`
-    databaseSearch().forEach(element => {
+    if (type == "Appointments") {
+        resultTable.innerHTML = `<table><tr>
+    <td>id</td>
+    <td>Joan Notified</td>
+    <td>Client First Name</td>
+    <td>Client Name</td>
+    <td>Date of Service</td>
+    <td>Time of Ride</td>
+    <td>Volunteer Name</td>
+    <td>Service Type</td>
+    <td>Sub-Service Type</td>
+    <td>COVID Agreement</td>
+    <td>Hours Spent</td>
+    <td>Ride Units</td>
+    <td>Miles</td>
+    <td>Destination Name</td>
+    <td>Destination Address</td>
+    <td>Additional Notes</td>
+    <td>Shorewood</td>
+    <td>Cancellation Reason</td>
+    <td>Volunteer Matched with Cancelled Ride</td>
+    <td>Month</td>
+    <td>Ride Coordinator</td>
+    </tr>
+    <tr>`;
 
-    });
+        data.forEach(appointment => {
+            resultTable.innterHTML += `    <td>${appointment['id']}</td>
+        <td> ${appointment['Joan Notified']}</td>
+        <td>${appointment['Client First Name']}</td>
+        <td>${appointment['Client Name']}</td>
+        <td>${appointment['Date of Service}']}</td>
+        <td>${appointment['Time of Ride']}</td>
+        <td>${appointment['Volunteer Name']}</td>
+        <td>${appointment['Service Type']}</td>
+        <td>${appointment['Sub-Service Type']}</td>
+        <td>${appointment['COVID Agreement']}</td>
+        <td>${appointment['Hours Spent']}</td>
+        <td>${appointment['Ride Units']}</td>
+        <td>${appointment['Miles']}</td>
+        <td>${appointment['Destination Name']}</td>
+        <td>${appointment['Destination Address']}</td>
+        <td>${appointment['Additional Notes']}</td>
+        <td>${appointment['Shorewood']}</td>
+        <td>${appointment['Cancellation Reason']}</td>
+        <td>${appointment['Volunteer Matched with Cancelled Ride']}</td>
+        <td>${appointment['Month']}</td>
+        <td>${appointment['Ride Coordinator']}</td> </tr> </table>`;
+        });
+    } else {
+        resultTable.innerHTML = `    <table>
+        <tr>
+            <td>ID</td>
+            <td>Volunteer</td>
+            <td>Client</td>
+            <td>Birthday List</td>
+            <td>Donor</td>
+            <td>Community Contact</td>
+            <td>Potential Volunteer</td>
+            <td>Potential Client</td>
+            <td>MADD</td>
+            <td>SDC</td>
+            <td>Loan Closet</td>
+            <td>Boswell's Volunteer</td>
+            <td>Event Attender</td>
+            <td>Status A|I||NA </td>
+            <td>Last Name</td>
+            <td>First Name</td>
+            <td>Organization</td>
+            <td>Address</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip</td>
+            <td>Home Phone</td>
+            <td>Cell Phone</td>
+            <td>Texting?</td>
+            <td>Email</td>
+            <td>Preferred method of contact</td>
+            <td>Rides</td>
+            <td>Shopping For</td>
+            <td>Shopping With</td>
+            <td>Chores</td>
+            <td>Home Repairs</td>
+            <td>Visit</td>
+            <td>Calls</td>
+            <td>Admin</td>
+            <td>I&A</td>
+            <td>Service Comments</td>
+            <td>Date Active</td>
+            <td>Date Inactive</td>
+            <td>Reason Inactive</td>
+            <td>DOB</td>
+            <td>Birthday</td>
+            <td>Gender</td>
+            <td>Marital Status</td>
+            <td>Lives With</td>
+            <td>Veteran</td>
+            <td>Race</td>
+            <td>Ethnicity</td>
+            <td>Below Poverty Level</td>
+            <td>Emergency Contact 1</td>
+            <td>Emergency Phone 1</td>
+            <td>Emergency Contact 2</td>
+            <td>Emergency Phone 2</td>
+            <td>Congregation</td>
+            <td>How Did You Hear About Us?</td>
+            <td>Consent to photo?</td>
+            <td>Other regular volunteer</td>
+            <td>Potential volunteer?</td>
+            <td>Do not Mail|Do Not Contact</td>
+            <td>Incomplete Paperwork</td>
+            <td>Fully Vaccinated</td>
+            <td>Will NOT get vaccine</td>
+            <td>Prefers Vaccinated Only</td>
+        </tr>
+    </table>`
+    }
 }
 
 //Create authorization stuff
@@ -250,6 +336,9 @@ signinModalBg.addEventListener('click', () => {
 //Access Appointments 
 db.child("1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss").child("Pending").get().then((snapshot) => {
     if (snapshot.exists()) {
+        snapshot.val().forEach(appointment =>
+            console.log(appointment.Month)
+        );
         console.log(snapshot.val());
     } else {
         console.log("No data available");
@@ -278,6 +367,7 @@ fetch(DBURL)
     */
 
 //Appointment
+/*
 function getDatabaseSnapshot(dbRef, docName) {
     try {
         get(child(dbRef, docName)).then((snapshot) => {
@@ -291,3 +381,4 @@ function getDatabaseSnapshot(dbRef, docName) {
 
     }
 }
+*/
