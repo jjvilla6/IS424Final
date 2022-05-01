@@ -99,23 +99,49 @@ try {
 function databaseSearch(searchValues, data, type) {
     curr_values = data;
     for (let i in searchValues) {
+        searchValue = searchValues[i].value;
+        if (searchValue != null) {
+            if (searchValue == "Yes") {
+                curr_values = getMatches(i, true, curr_values);
+            } else if (searchValue == "No") {
+                curr_values = getMatches(i, false, curr_values);
+            } else {
+                curr_values = getMatches(i, searchValue, curr_values);
+            }
+        }
         //curr_values = getMatches(i, searchValues[i], curr_values);
         curr_values = searchValues[i].value;
         console.log(curr_values);
     }
-    return curr_values, type;
+    createTable(curr_values, type);
 }
 
-function getMatches(key, value, list) {
-
+function getMatches(key, value, data) {
+    matches = [];
+    data.forEach(entry => {
+        if (entry[key] == value) {
+            matches.append(entry)
+        }
+    })
+    return matches;
 }
 //Get all values of specified field #TODO
 
 //Create table displaying all appt values #TODO
+try {
+    let apptResultTable = document.querySelector("#apptResultTable")
+} catch (e) {
+
+}
+try {
+    let personResultTable = document.querySelector("#personResultTable")
+} catch (e) {
+
+}
 
 function createTable(data, type) {
     if (type == "Appointments") {
-        resultTable.innerHTML = `<table><tr>
+        apptResultTable.innerHTML = `<table><tr>
     <td>id</td>
     <td>Joan Notified</td>
     <td>Client First Name</td>
@@ -141,7 +167,7 @@ function createTable(data, type) {
     <tr>`;
 
         data.forEach(appointment => {
-            resultTable.innterHTML += `    <td>${appointment['id']}</td>
+            apptResultTable.innerHTML += `    <td>${appointment['id']}</td>
         <td> ${appointment['Joan Notified']}</td>
         <td>${appointment['Client First Name']}</td>
         <td>${appointment['Client Name']}</td>
@@ -161,10 +187,11 @@ function createTable(data, type) {
         <td>${appointment['Cancellation Reason']}</td>
         <td>${appointment['Volunteer Matched with Cancelled Ride']}</td>
         <td>${appointment['Month']}</td>
-        <td>${appointment['Ride Coordinator']}</td> </tr> </table>`;
+        <td>${appointment['Ride Coordinator']}</td> </tr>`;
         });
+        apptResultTable.innerHTML += `</table>`
     } else {
-        resultTable.innerHTML = `    <table>
+        personResultTable.innerHTML = ` <table>
         <tr>
             <td>ID</td>
             <td>Volunteer</td>
@@ -228,8 +255,75 @@ function createTable(data, type) {
             <td>Fully Vaccinated</td>
             <td>Will NOT get vaccine</td>
             <td>Prefers Vaccinated Only</td>
-        </tr>
-    </table>`
+            </tr>`
+        data.forEach(person => {
+            personResultTable.innerHTML += `
+        <tr>
+            <td>${person['ID']}</td>
+            <td>${person['Volunteer']}</td>
+            <td>${person['Client']}</td>
+            <td>${person['Birthday List']}</td>
+            <td>${person['Donor']}</td>
+            <td>${person['Community Contact']}</td>
+            <td>${person['Potential Volunteer']}</td>
+            <td>${person['Potential Client']}</td>
+            <td>${person['MADD']}</td>
+            <td>${person['SDC']}</td>
+            <td>${person['Loan Closet']}</td>
+            <td>${person["Boswell's Volunteer"]}</td>
+            <td>${person['Event Attender']}</td>
+            <td>${person['Status A|I||NA ']}</td>
+            <td>${person['Last Name']}</td>
+            <td>${person['First Name']}</td>
+            <td>${person['Organization']}</td>
+            <td>${person['Address']}</td>
+            <td>${person['City']}</td>
+            <td>${person['State']}</td>
+            <td>${person['Zip']}</td>
+            <td>${person['Home Phone']}</td>
+            <td>${person['Cell Phone']}</td>
+            <td>${person['Texting?']}</td>
+            <td>${person['Email']}</td>
+            <td>${person['Preferred method of contact']}</td>
+            <td>${person['Rides']}</td>
+            <td>${person['Shopping For']}</td>
+            <td>${person['Shopping With']}</td>
+            <td>${person['Chores']}</td>
+            <td>${person['Home Repairs']}</td>
+            <td>${person['Visit']}</td>
+            <td>${person['Calls']}</td>
+            <td>${person['Admin']}</td>
+            <td>${person['I&A']}</td>
+            <td>${person['Service Comments']}</td>
+            <td>${person['Date Active']}</td>
+            <td>${person['Date Inactive']}</td>
+            <td>${person['Reason Inactive']}</td>
+            <td>${person['DOB']}</td>
+            <td>${person['Birthday']}</td>
+            <td>${person['Gender']}</td>
+            <td>${person['Marital Status']}</td>
+            <td>${person['Lives With']}</td>
+            <td>${person['Veteran']}</td>
+            <td>${person['Race']}</td>
+            <td>${person['Ethnicity']}</td>
+            <td>${person['Below Poverty Level']}</td>
+            <td>${person['Emergency Contact 1']}</td>
+            <td>${person['Emergency Phone 1']}</td>
+            <td>${person['Emergency Contact 2']}</td>
+            <td>${person['Emergency Phone 2']}</td>
+            <td>${person['Congregation']}</td>
+            <td>${person['How Did You Hear About Us?']}</td>
+            <td>${person['Consent to photo?']}</td>
+            <td>${person['Other regular volunteer']}</td>
+            <td>${person['Potential volunteer?']}</td>
+            <td>${person['Do not Mail|Do Not Contact']}</td>
+            <td>${person['Incomplete Paperwork']}</td>
+            <td>${person['Fully Vaccinated']}</td>
+            <td>${person['Will NOT get vaccine']}</td>
+            <td>${person['Prefers Vaccinated Only']}</td>
+        </tr>`
+            personResultTable.innerHTML += `</table>`;
+        })
     }
 }
 
