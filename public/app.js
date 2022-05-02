@@ -1,10 +1,40 @@
 //Person Search Values
+//Access Appointments
+function getDatabaseSnapshot(dbRef, child, docName) {
+    if (dbRef === db) {
+        console.log("Appointments");
+        db.child(child).child(docName).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                return snapshot.val();
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    } else {
+        console.log("People");
+        people_db.child(child).child(docName).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                return snapshot.val();
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
+    }
+    // Access People
 
+}
 var ppl_data;
 var appt_data;
 try {
     let pplSearchBtn = document.querySelector('#pplSearchBtn');
     pplSearchBtn.addEventListener('click', () => {
+
         let personValues = {};
         let pplOtherVal1 = document.querySelector("#otherCol1");
         let pplOtherVal2 = document.querySelector("#otherCol2");
@@ -60,6 +90,7 @@ try {
         personValues[pplOtherVal2] = pplOtherSearch2;
         ppl_data = getDatabaseSnapshot(people_db, "1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE", `Sheet1`);
         databaseSearch(personValues, ppl_data, "People");
+        preventDefault();
     });
 } catch (TypeError) {
 
@@ -68,7 +99,7 @@ try {
     let searchAptBtn = document.querySelector('#searchAptBtn');
     searchAptBtn.addEventListener('click', () => {
         //Call function to search appts
-        appt_data = getDatabaseSnapshot(db, '1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss', `Pending`);
+
         let appointmentValues = {};
         let apptOtherVal1 = document.querySelector("#otherCol3");
         let apptOtherVal2 = document.querySelector("#otherCol4");
@@ -87,8 +118,10 @@ try {
         appointmentValues[apptOtherVal1] = apptOtherSearch1;
         let apptOtherSearch2 = document.querySelector("#otherSearch4");
         appointmentValues[apptOtherVal2] = apptOtherSearch2;
+        appt_data = getDatabaseSnapshot(db, '1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss', `Pending`);
         console.log(appt_data);
         databaseSearch(appointmentValues, appt_data, "Appointments");
+        preventDefault();
     });
 } catch (TypeError) {}
 
@@ -382,7 +415,7 @@ function configureNav(user) {
             pplSearchBtn.classList.remove("is-hidden");
         } catch (e) {}
         try {
-            appointmentSearchBtn.classList.remove("is-hidden");
+            searchAptBtn.classList.remove("is-hidden");
         } catch (e) {}
     } else {
         welcomeUser.innerHTML = '';
@@ -392,7 +425,7 @@ function configureNav(user) {
             pplSearchBtn.classList.add("is-hidden");
         } catch (e) {}
         try {
-            appointmentSearchBtn.classList.add("is-hidden");
+            searchAptBtn.classList.add("is-hidden");
         } catch (e) {}
     }
 }
@@ -407,21 +440,21 @@ addAppointmentBtn.addEventListener('click', (e) => {
     var appointmentForm = document.querySelector("#appointmentForm");
     // show modal
     addAppointmentModal.classList.add('is-active');
-    e.preventDefault();
+    preventDefault();
 })
 var appointmentCancel = document.querySelector("#appointmentCancel");
 appointmentCancel.addEventListener('click', (e) => {
-    e.preventDefault();
+    preventDefault();
     addAppointmentModal.classList.remove('is-active');
 })
 var appointmentReset = document.querySelector("#appointmentReset");
 appointmentReset.addEventListener('click', (e) => {
-    e.preventDefault();
+    preventDefault();
     appointmentForm.reset();
 })
 var addAppointmentModalBG = document.querySelector("#addAppointmentModalBG")
 addAppointmentModalBG.addEventListener("click", (e) => {
-    e.preventDefault();
+    preventDefault();
     addAppointmentModal.classList.remove('is-active');
 })
 // New Contact Button
@@ -430,21 +463,21 @@ addContactBtn.addEventListener('click', (e) => {
     var contactFrom = document.querySelector("#contactForm");
     // show modal
     addContactModal.classList.add('is-active');
-    e.preventDefault();
+    preventDefault();
 })
 var contactCancel = document.querySelector("#contactCancel");
 contactCancel.addEventListener('click', (e) => {
-    e.preventDefault();
+    preventDefault();
     addContactModal.classList.remove('is-active');
 })
 var contactReset = document.querySelector("#contactReset");
 contactReset.addEventListener('click', (e) => {
-    e.preventDefault();
+    preventDefault();
     contactForm.reset();
 })
 var addContactModalBG = document.querySelector("#addContactModalBG")
 addContactModalBG.addEventListener("click", (e) => {
-    e.preventDefault();
+    preventDefault();
     addContactModal.classList.remove('is-active');
 })
 */
@@ -470,39 +503,11 @@ signinbtn.addEventListener('click', () => {
 
 signinModalBg.addEventListener('click', () => {
     signinModal.classList.remove('is-active');
+    preventDefault();
 });
 //Contacts
 
-//Access Appointments
-function getDatabaseSnapshot(dbRef, child, docName) {
-    if (dbRef === db) {
-        console.log("Appointments");
-        db.child(child).child(docName).get().then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val());
-                return snapshot.val();
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
-    } else {
-        console.log("People");
-        people_db.child(child).child(docName).get().then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val());
-                return snapshot.val();
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
-    }
-    // Access People
 
-}
 /*db.on('value', (snapshot) => {
     console.log(snapshot.val());
 })
