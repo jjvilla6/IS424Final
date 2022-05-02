@@ -1,41 +1,58 @@
 //Person Search Values
 //Access Appointments
+var personValues = {};
+var appointmentValues = {};
+
 function getDatabaseSnapshot(dbRef, child, docName) {
     if (dbRef === db) {
         console.log("Appointments");
         db.child(child).child(docName).get().then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
-                return snapshot.val();
+                // return snapshot.val();
+                return new Promise((resolve, reject) => {
+                    resolve(snapshot.val())
+                })
             } else {
                 console.log("No data available");
             }
-        }).catch((error) => {
+        }).
+        then(appt_data => {
+            databaseSearch(appointmentValues, Array.from(appt_data), "Appointments");
+        }).
+
+        catch((error) => {
             console.error(error);
         });
     } else {
         console.log("People");
-        people_db.child(child).child(docName).get().then((snapshot) => {
+        db.child(child).child(docName).get().then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
-                return snapshot.val();
+                // return snapshot.val();
+                return new Promise((resolve, reject) => {
+                    resolve(snapshot.val())
+                })
             } else {
                 console.log("No data available");
             }
-        }).catch((error) => {
+        }).
+        then(ppl_data => {
+            databaseSearch(personValues, Array.from(ppl_data), "People");
+        }).
+
+        catch((error) => {
             console.error(error);
         });
     }
-    // Access People
 
 }
+// Access People
 var ppl_data;
 var appt_data;
 try {
     let pplSearchBtn = document.querySelector('#pplSearchBtn');
-    pplSearchBtn.addEventListener('click', () => {
-
-        let personValues = {};
+    pplSearchBtn.addEventListener('click', (e) => {
         let pplOtherVal1 = document.querySelector("#otherCol1");
         let pplOtherVal2 = document.querySelector("#otherCol2");
         let isVolunteer = document.querySelector("#isVolunteer");
@@ -88,19 +105,17 @@ try {
         personValues[pplOtherVal1] = pplOtherSearch1;
         let pplOtherSearch2 = document.querySelector("#otherSearch1");
         personValues[pplOtherVal2] = pplOtherSearch2;
-        ppl_data = getDatabaseSnapshot(people_db, "1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE", `Sheet1`);
-        databaseSearch(personValues, ppl_data, "People");
-        preventDefault();
+        getDatabaseSnapshot(people_db, "1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE", `Sheet1`);
+
+        e.preventDefault();
     });
 } catch (TypeError) {
 
 }
 try {
     let searchAptBtn = document.querySelector('#searchAptBtn');
-    searchAptBtn.addEventListener('click', () => {
+    searchAptBtn.addEventListener('click', (e) => {
         //Call function to search appts
-
-        let appointmentValues = {};
         let apptOtherVal1 = document.querySelector("#otherCol3");
         let apptOtherVal2 = document.querySelector("#otherCol4");
         let apptClientName = document.querySelector("#clientNameSelect");
@@ -118,10 +133,8 @@ try {
         appointmentValues[apptOtherVal1] = apptOtherSearch1;
         let apptOtherSearch2 = document.querySelector("#otherSearch4");
         appointmentValues[apptOtherVal2] = apptOtherSearch2;
-        appt_data = getDatabaseSnapshot(db, '1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss', `Pending`);
-        console.log(appt_data);
-        databaseSearch(appointmentValues, appt_data, "Appointments");
-        preventDefault();
+        getDatabaseSnapshot(db, '1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss', `Pending`);
+        e.preventDefault();
     });
 } catch (TypeError) {}
 
@@ -533,6 +546,7 @@ function getDatabaseSnapshot(dbRef, docName) {
     }
 }
 */
+/*
 people_db.child("1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE").child("Sheet1").get().then((snapshot) => {
     if (snapshot.exists()) {
         console.log(snapshot.val());
@@ -542,3 +556,4 @@ people_db.child("1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE").child("Sheet1").
 }).catch((error) => {
     console.error(error);
 });
+*/
