@@ -32,28 +32,33 @@
             </div>
             <div class="navbar-item" id="welcomeUser">
             </div>
+            <!--
             <div class="navbar-item">
                 <a id="signupbtn" class="loggedout has-text-white">Sign Up</a>
             </div>
+        -->
             <div class="navbar-item">
-                <a id="signinbtn" class="loggedout has-text-white">Sign In</a>
-                <div class="navbar-item">
-                    <a id="signoutbtn" class="loggedin has-text-white">Sign Out</a>
-                </div>
+                <a id="signinbtn" class="has-text-white">Sign In</a>
+            </div>
+            <div class="navbar-item">
+                <a id="signoutbtn" class="has-text-white is-hidden">Sign Out</a>
+            </div>
+            <!--
                 <div class=" navbar-item">
                     <a id="addAppointmentBtn" class="loggedin has-text-white">New Appointment</a>
                 </div>
                 <div class=" navbar-item">
                     <a id="addContactBtn" class="loggedin has-text-white">Add Client/Volunteer</a>
                 </div>
-                <div class=" navbar-item">
-                    <a id="appointmentPageSelect" class="loggedin has-text-white"
-                        onclick="location.href='index.html'">Search Appointments</a>
-                </div>
-
+                -->
+            <div class=" navbar-item">
+                <a id="appointmentPageSelect" class="loggedin has-text-white"
+                    onclick="location.href='index.html'">Search Appointments</a>
             </div>
 
         </div>
+
+    </div>
 
 </header>
 
@@ -398,7 +403,7 @@
             <tr>
                 <td>
                     <div class="control">
-                        <button class="button" id="pplSearchBtn">Search People</button>
+                        <button class="button is-hidden" id="pplSearchBtn">Search People</button>
                     </div>
                 </td>
             </tr>
@@ -440,13 +445,15 @@
                     <div class="field">
                         <label class="label has-text-black">Date of Service</label>
                         <div class="control">
-                            <input type="text" class="input" id="dateOfService" placeholder="MM/DD/YYYY">
+                            <input type="text" class="input" id="dateOfService" placeholder="MM/DD/YYYY"
+                                value="01/01/1900">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-black">Time of Ride</label>
                         <div class="control">
-                            <input type="text" class="input" id="timeOfRide" placeholder="HH:MM AM/PM">
+                            <input type="text" class="input" id="timeOfRide" placeholder="HH:MM AM/PM"
+                                value="12/31/2050">;
                         </div>
                     </div>
                     <label class="label">Service Type</label>
@@ -788,13 +795,15 @@
                     <div class="field">
                         <label class="label has-text-black">Date Active</label>
                         <div class="control">
-                            <input type="text" class="input" id="newDateActive" placeholder="MM/DD/YYYY">
+                            <input type="text" class="input" id="newDateActive" placeholder="MM/DD/YYYY"
+                                value="01/01/1900">
                         </div>
                     </div>
                     <div class="field">
                         <label class="label has-text-black">Date Inactive</label>
                         <div class="control">
-                            <input type="text" class="input" id="newDateInactive" placeholder="MM/DD/YYYY">
+                            <input type="text" class="input" id="newDateInactive" placeholder="MM/DD/YYYY"
+                                value="12/31/2050">
                         </div>
                     </div>
                     <div class="field">

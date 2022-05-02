@@ -1,82 +1,64 @@
-let appointmentValues = {};
-let personValues = {};
-//Make All references #TODO
-let apptOtherVal1 = document.querySelector("#otherCol3");
-let apptOtherVal2 = document.querySelector("#otherCol4");
-let apptClientName = document.querySelector("#clientNameSelect");
-appointmentValues['Client Name'] = apptClientName;
-let apptVolName = document.querySelector("#volNameSelect");
-appointmentValues['Volunteer Name'] = apptVolName
-//Use substrings for date search
-let apptStartDate = document.querySelector("#appointmentStartDate");
-appointmentValues['Volunteer Name'] = apptVolName
-let apptEndDate = document.querySelector("#appointmentEndDate");
-appointmentValues['Volunteer Name'] = apptVolName
-let apptShorewood = document.querySelector("#Shorewood");
-appointmentValues['Volunteer Name'] = apptVolName
-let apptOtherSearch1 = document.querySelector("#otherSearch3");
-appointmentValues[apptOtherVal1] = apptOtherSearch1;
-let apptOtherSearch2 = document.querySelector("#otherSearch4");
-appointmentValues[apptOtherVal2] = apptOtherSearch2;
-let appointmentSearchBtn = document.querySelector("#searchAptBtn");
 //Person Search Values
-let pplOtherVal1 = document.querySelector("#otherCol1");
-let pplOtherVal2 = document.querySelector("#otherCol2");
-let isVolunteer = document.querySelector("#isVolunteer");
-personValues['Volunteer'] = isVolunteer;
-let isClient = document.querySelector("#isClient");
-personValues['Client'] = isClient;
-let isPotVol = document.querySelector("#isPotVol");
-personValues['Potential Volunteer'] = isPotVol;
-let isPotClient = document.querySelector("#isPotClient");
-personValues['Potential Client'] = isPotClient;
-let isMADD = document.querySelector("#isMADD");
-personValues['MADD'] = isMADD;
-let pplFirstName = document.querySelector("#firstName");
-personValues['First Name'] = pplFirstName;
-let pplLastName = document.querySelector("#lastName");
-personValues['Last Name'] = pplLastName;
-let pplHomePhone = document.querySelector("#homePhone");
-personValues['Home Phone'] = pplHomePhone;
-let pplCellPhone = document.querySelector("#cellPhone");
-personValues['Cell Phone'] = pplCellPhone;
-let pplRides = document.querySelector("#rides");
-personValues['Rides'] = pplRides;
-let pplShoppingFor = document.querySelector("#shoppingFor");
-personValues['Shopping For'] = pplShoppingFor;
-let pplShoppingWith = document.querySelector("#shoppingWith");
-personValues['Shopping With'] = pplShoppingWith;
-let pplChores = document.querySelector("#chores");
-personValues['Chores'] = pplChores;
-let pplHomeRepairs = document.querySelector("#homeRepairs");
-personValues['Home Repairs'] = pplHomeRepairs;
-let pplVisit = document.querySelector("#visit");
-personValues['Visit'] = pplVisit;
-let pplDateActiveStart = document.querySelector("#dateActiveStart");
-personValues['Date Active-Start'] = pplDateActiveStart;
-let pplDateActiveEnd = document.querySelector("#dateActiveEnd");
-personValues['Date Active-End'] = pplDateActiveEnd;
-let pplDateOfBirthStart = document.querySelector("#dateOfBirthStart");
-personValues['DOB-Start'] = pplDateOfBirthStart;
-let pplDateOfBirthEnd = document.querySelector("#dateOfBirthEnd");
-personValues['DOB-End'] = pplDateOfBirthEnd;
-let congregation = document.querySelector("#congregation");
-personValues['Congregation'] = congregation;
-let vaccinated = document.querySelector("#vaccinated");
-personValues['Fully vaccinated'] = vaccinated;
-let vaccineRefusal = document.querySelector("#vaccineRefusal");
-personValues['Will NOT get vaccine'] = vaccineRefusal;
-let vaccinepreferred = document.querySelector("#dateOfBirthEnd");
-personValues['Prefers Vaccinated Only'] = vaccinepreferred;
-let pplOtherSearch1 = document.querySelector("#otherSearch1");
-personValues[pplOtherVal1] = pplOtherSearch1;
-let pplOtherSearch2 = document.querySelector("#otherSearch1");
-personValues[pplOtherVal2] = pplOtherSearch2;
 
+var ppl_data;
+var appt_data;
 try {
     let pplSearchBtn = document.querySelector('#pplSearchBtn');
     pplSearchBtn.addEventListener('click', () => {
-        ppl_data = getDatabaseSnapshot(people_db, `Sheet1`);
+        let personValues = {};
+        let pplOtherVal1 = document.querySelector("#otherCol1");
+        let pplOtherVal2 = document.querySelector("#otherCol2");
+        let isVolunteer = document.querySelector("#isVolunteer");
+        personValues['Volunteer'] = isVolunteer;
+        let isClient = document.querySelector("#isClient");
+        personValues['Client'] = isClient;
+        let isPotVol = document.querySelector("#isPotVol");
+        personValues['Potential Volunteer'] = isPotVol;
+        let isPotClient = document.querySelector("#isPotClient");
+        personValues['Potential Client'] = isPotClient;
+        let isMADD = document.querySelector("#isMADD");
+        personValues['MADD'] = isMADD;
+        let pplFirstName = document.querySelector("#firstName");
+        personValues['First Name'] = pplFirstName;
+        let pplLastName = document.querySelector("#lastName");
+        personValues['Last Name'] = pplLastName;
+        let pplHomePhone = document.querySelector("#homePhone");
+        personValues['Home Phone'] = pplHomePhone;
+        let pplCellPhone = document.querySelector("#cellPhone");
+        personValues['Cell Phone'] = pplCellPhone;
+        let pplRides = document.querySelector("#rides");
+        personValues['Rides'] = pplRides;
+        let pplShoppingFor = document.querySelector("#shoppingFor");
+        personValues['Shopping For'] = pplShoppingFor;
+        let pplShoppingWith = document.querySelector("#shoppingWith");
+        personValues['Shopping With'] = pplShoppingWith;
+        let pplChores = document.querySelector("#chores");
+        personValues['Chores'] = pplChores;
+        let pplHomeRepairs = document.querySelector("#homeRepairs");
+        personValues['Home Repairs'] = pplHomeRepairs;
+        let pplVisit = document.querySelector("#visit");
+        personValues['Visit'] = pplVisit;
+        let pplDateActiveStart = document.querySelector("#dateActiveStart");
+        personValues['Date Active-Start'] = pplDateActiveStart;
+        let pplDateActiveEnd = document.querySelector("#dateActiveEnd");
+        personValues['Date Active-End'] = pplDateActiveEnd;
+        let pplDateOfBirthStart = document.querySelector("#dateOfBirthStart");
+        personValues['DOB-Start'] = pplDateOfBirthStart;
+        let pplDateOfBirthEnd = document.querySelector("#dateOfBirthEnd");
+        personValues['DOB-End'] = pplDateOfBirthEnd;
+        let congregation = document.querySelector("#congregation");
+        personValues['Congregation'] = congregation;
+        let vaccinated = document.querySelector("#vaccinated");
+        personValues['Fully vaccinated'] = vaccinated;
+        let vaccineRefusal = document.querySelector("#vaccineRefusal");
+        personValues['Will NOT get vaccine'] = vaccineRefusal;
+        let vaccinepreferred = document.querySelector("#dateOfBirthEnd");
+        personValues['Prefers Vaccinated Only'] = vaccinepreferred;
+        let pplOtherSearch1 = document.querySelector("#otherSearch1");
+        personValues[pplOtherVal1] = pplOtherSearch1;
+        let pplOtherSearch2 = document.querySelector("#otherSearch1");
+        personValues[pplOtherVal2] = pplOtherSearch2;
+        ppl_data = getDatabaseSnapshot(people_db, "1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE", `Sheet1`);
         databaseSearch(personValues, ppl_data, "People");
     });
 } catch (TypeError) {
@@ -86,12 +68,29 @@ try {
     let searchAptBtn = document.querySelector('#searchAptBtn');
     searchAptBtn.addEventListener('click', () => {
         //Call function to search appts
-        appt_data = getDatabaseSnapshot(db, `Pending`);
+        appt_data = getDatabaseSnapshot(db, '1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss', `Pending`);
+        let appointmentValues = {};
+        let apptOtherVal1 = document.querySelector("#otherCol3");
+        let apptOtherVal2 = document.querySelector("#otherCol4");
+        let apptClientName = document.querySelector("#clientNameSelect");
+        appointmentValues['Client Name'] = apptClientName;
+        let apptVolName = document.querySelector("#volNameSelect");
+        appointmentValues['Volunteer Name'] = apptVolName
+        //Use substrings for date search
+        let apptStartDate = document.querySelector("#appointmentStartDate");
+        appointmentValues['Volunteer Name'] = apptVolName
+        let apptEndDate = document.querySelector("#appointmentEndDate");
+        appointmentValues['Volunteer Name'] = apptVolName
+        let apptShorewood = document.querySelector("#Shorewood");
+        appointmentValues['Volunteer Name'] = apptVolName
+        let apptOtherSearch1 = document.querySelector("#otherSearch3");
+        appointmentValues[apptOtherVal1] = apptOtherSearch1;
+        let apptOtherSearch2 = document.querySelector("#otherSearch4");
+        appointmentValues[apptOtherVal2] = apptOtherSearch2;
+        console.log(appt_data);
         databaseSearch(appointmentValues, appt_data, "Appointments");
     });
-} catch (TypeError) {
-
-}
+} catch (TypeError) {}
 
 
 
@@ -99,12 +98,19 @@ try {
 function databaseSearch(searchValues, data, type) {
     curr_values = data;
     for (let i in searchValues) {
+        //console.log(curr_values.length);
         searchValue = searchValues[i].value;
         if (searchValue != null) {
             if (searchValue == "Yes") {
                 curr_values = getMatches(i, true, curr_values);
             } else if (searchValue == "No") {
                 curr_values = getMatches(i, false, curr_values);
+            } else if (i.includes("Date")) {
+                if (i.includes("Start")) {
+                    curr_values = getMatches(i, searchValue, curr_values, type, "Start");
+                } else {
+                    curr_values = getMatches(i, searchValue, curr_values, "End");
+                }
             } else {
                 curr_values = getMatches(i, searchValue, curr_values);
             }
@@ -116,11 +122,26 @@ function databaseSearch(searchValues, data, type) {
     createTable(curr_values, type);
 }
 
-function getMatches(key, value, data) {
+function getMatches(key, value, data, searchedDB, datetype = "None") {
     matches = [];
     data.forEach(entry => {
-        if (entry[key] == value) {
-            matches.append(entry)
+        if (datetype == "Start") {
+            fieldToSearch = key.substring(0, key.indexOf('-'));
+            startDate = Date.parse(value);
+            entryDate = Date.parse(fieldToSearch);
+
+            if (searchedDB == "Appointments") {
+                endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
+            } else {
+                endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
+            }
+            if (startDate < entryDate && endDate > entryDate) {
+                matches.append(entry);
+            }
+        } else {
+            if (entry[key] == value) {
+                matches.append(entry)
+            }
         }
     })
     return matches;
@@ -351,9 +372,34 @@ signin_form.addEventListener("submit", (e) => {
 
         });
 })
+
+function configureNav(user) {
+    if (user) {
+        welcomeUser.innerHTML = `Welcome ${auth.currentUser.email}!`;
+        signoutbtn.classList.remove("is-hidden");
+        signinbtn.classList.add("is-hidden");
+        try {
+            pplSearchBtn.classList.remove("is-hidden");
+        } catch (e) {}
+        try {
+            appointmentSearchBtn.classList.remove("is-hidden");
+        } catch (e) {}
+    } else {
+        welcomeUser.innerHTML = '';
+        signinbtn.classList.remove("is-hidden");
+        signoutbtn.classList.add("is-hidden");
+        try {
+            pplSearchBtn.classList.add("is-hidden");
+        } catch (e) {}
+        try {
+            appointmentSearchBtn.classList.add("is-hidden");
+        } catch (e) {}
+    }
+}
 let signoutbtn = document.querySelector("#signoutbtn");
 signoutbtn.addEventListener('click', (e) => {
     auth.signOut();
+    configureNav(null);
 });
 // New Appointment Button
 /*var addAppointmentBtn = document.querySelector("#addAppointmentBtn");
@@ -427,30 +473,36 @@ signinModalBg.addEventListener('click', () => {
 });
 //Contacts
 
-//Access Appointments 
-db.child("1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss").child("Pending").get().then((snapshot) => {
-    if (snapshot.exists()) {
-        snapshot.val().forEach(appointment =>
-            console.log(appointment.Month)
-        );
-        console.log(snapshot.val());
+//Access Appointments
+function getDatabaseSnapshot(dbRef, child, docName) {
+    if (dbRef === db) {
+        console.log("Appointments");
+        db.child(child).child(docName).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                return snapshot.val();
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
     } else {
-        console.log("No data available");
+        console.log("People");
+        people_db.child(child).child(docName).get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                return snapshot.val();
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        });
     }
-}).catch((error) => {
-    console.error(error);
-});
-// Access People
-people_db.child("1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE").child("Sheet1").get().then((snapshot) => {
-    if (snapshot.exists()) {
-        console.log(snapshot.val());
-    } else {
-        console.log("No data available");
-    }
-}).catch((error) => {
-    console.error(error);
-});
+    // Access People
 
+}
 /*db.on('value', (snapshot) => {
     console.log(snapshot.val());
 })
@@ -476,3 +528,12 @@ function getDatabaseSnapshot(dbRef, docName) {
     }
 }
 */
+people_db.child("1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE").child("Sheet1").get().then((snapshot) => {
+    if (snapshot.exists()) {
+        console.log(snapshot.val());
+    } else {
+        console.log("No data available");
+    }
+}).catch((error) => {
+    console.error(error);
+});

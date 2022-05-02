@@ -32,13 +32,15 @@
             </div>
             <div class="navbar-item" id="welcomeUser">
             </div>
+            <!--
             <div class="navbar-item">
                 <a id="signupbtn" class="loggedout has-text-white">Sign Up</a>
             </div>
+        -->
             <div class="navbar-item">
-                <a id="signinbtn" class="loggedout has-text-white">Sign In</a>
+                <a id="signinbtn" class="has-text-white">Sign In</a>
                 <div class="navbar-item">
-                    <a id="signoutbtn" class="loggedin has-text-white">Sign Out</a>
+                    <a id="signoutbtn" class="has-text-white is-hidden">Sign Out</a>
                 </div>
                 <!--  <div class=" navbar-item">
                     <a id="addAppointmentBtn" class="loggedin has-text-white">New Appointment</a>
@@ -168,12 +170,14 @@
                         </td>
                         <td>
                             <div class="control apptSearch">
-                                <input class="input" type="text" placeholder="MM/DD/YYYY" id="appointmentStartDate">
+                                <input class="input" type="text" placeholder="MM/DD/YYYY" value="01/01/1900"
+                                    id="appointmentStartDate">
                             </div>
                         </td>
                         <td>
                             <div class="control apptSearch">
-                                <input class="input" type="text" placeholder="MM/DD/YYYY" id="appointmentEndDate">
+                                <input class="input" type="text" placeholder="MM/DD/YYYY" value="12/31/2050"
+                                    id="appointmentEndDate">
                             </div>
                         </td>
                         <td>
@@ -205,7 +209,8 @@
                     <tr>
                         <td>
                             <div class="control apptSearch">
-                                <button class="button is-primary" id="searchAptBtn">Search Appointments</button>
+                                <button class="button is-primary is-hidden" id="searchAptBtn">Search
+                                    Appointments</button>
                             </div>
                         </td>
                     </tr>
