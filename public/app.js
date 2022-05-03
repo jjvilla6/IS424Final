@@ -3,6 +3,19 @@
 var personValues = {};
 var appointmentValues = {};
 
+function snapshotToArray(snapshot) {
+    var returnArr = [];
+
+    snapshot.forEach(function (childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+
+        returnArr.push(item);
+    });
+
+    return returnArr;
+};
+
 function getDatabaseSnapshot(dbRef, child, docName) {
     if (dbRef === db) {
         console.log("Appointments");
@@ -11,7 +24,7 @@ function getDatabaseSnapshot(dbRef, child, docName) {
                 console.log(snapshot.val());
                 // return snapshot.val();
                 return new Promise((resolve, reject) => {
-                    resolve(snapshot.val())
+                    resolve(snapshotToArray(snapshot))
                 })
             } else {
                 console.log("No data available");
@@ -31,7 +44,7 @@ function getDatabaseSnapshot(dbRef, child, docName) {
                 console.log(snapshot.val());
                 // return snapshot.val();
                 return new Promise((resolve, reject) => {
-                    resolve(snapshot.val())
+                    resolve(snapshotToArray(snapshot))
                 })
             } else {
                 console.log("No data available");
@@ -142,7 +155,8 @@ try {
 
 //Function to search through entries to find matches #TODO
 function databaseSearch(searchValues, data, type) {
-    curr_values = data;
+    curr_values = Array.from(data);
+    console.log((typeof curr_values));
     for (let i in searchValues) {
         //console.log(curr_values.length);
         searchValue = searchValues[i].value;
@@ -170,23 +184,26 @@ function databaseSearch(searchValues, data, type) {
 
 function getMatches(key, value, data, searchedDB, datetype = "None") {
     matches = [];
-    data.forEach(entry => {
-        if (datetype == "Start") {
-            fieldToSearch = key.substring(0, key.indexOf('-'));
-            startDate = Date.parse(value);
-            entryDate = Date.parse(fieldToSearch);
+    console.log(Object.values(data));
+    Object.values(data).forEach(entry => {
+        if (typeof (entry) != "undefined") {
+            if (datetype == "Start") {
+                fieldToSearch = key.substring(0, key.indexOf('-'));
+                startDate = Date.parse(value);
+                entryDate = Date.parse(fieldToSearch);
 
-            if (searchedDB == "Appointments") {
-                endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
+                if (searchedDB == "Appointments") {
+                    endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
+                } else {
+                    endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
+                }
+                if (startDate < entryDate && endDate > entryDate) {
+                    matches.append(entry);
+                }
             } else {
-                endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
-            }
-            if (startDate < entryDate && endDate > entryDate) {
-                matches.append(entry);
-            }
-        } else {
-            if (entry[key] == value) {
-                matches.append(entry)
+                if (entry[key] == value) {
+                    matches.append(entry)
+                }
             }
         }
     })
@@ -208,7 +225,7 @@ try {
 
 function createTable(data, type) {
     if (type == "Appointments") {
-        apptResultTable.innerHTML = `<table><tr>
+        apptResultTable.innerHTML = `<table class="table is-bordered is-hoverable"><tr>
     <td>id</td>
     <td>Joan Notified</td>
     <td>Client First Name</td>
@@ -233,7 +250,7 @@ function createTable(data, type) {
     </tr>
     <tr>`;
 
-        data.forEach(appointment => {
+        Object.values(data).forEach(appointment => {
             apptResultTable.innerHTML += `    <td>${appointment['id']}</td>
         <td> ${appointment['Joan Notified']}</td>
         <td>${appointment['Client First Name']}</td>
