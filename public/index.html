@@ -182,15 +182,12 @@
                         </td>
                         <td>
                             <div class="control apptSearch">
-                                <div class="select" id="Shorewood">
-                                    <div class="label">
-
-                                        <select>
-                                            <option>Select</option>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
-                                        </select>
-                                    </div>
+                                <div class="select">
+                                    <select id="Shorewood">
+                                        <option>Select</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
                                 </div>
                             </div>
                         </td>
@@ -218,9 +215,10 @@
             </div>
         </div>
     </div>
-    <div id="apptResultTable" class="table-container"></div>
+    <div id="apptResultTable" class="table-container">
+    </div>
 
-    <!-- Appointment form -->
+    <!-- Appointment form 
     <div class="modal" id="addAppointmentModal">
         <div class="modal-background" id="addAppointmentModalBG"></div>
         <div class="modal-card">
@@ -262,9 +260,9 @@
                     </div>
                     <label class="label">Service Type</label>
                     <div class="control ">
-                        <div class="select" id="serviceTypeSelect">
+                        <div class="select">
 
-                            <select>
+                            <select id="serviceTypeSelect">
                                 <option value="Admin">Admin</option>
                                 <option value="Chores">Chores</option>
                                 <option value="Phone/Letters">Phone/Letters</option>
@@ -278,8 +276,8 @@
 
                     <label class="label">Sub-Service Type</label>
                     <div class="control ">
-                        <div class="select" id="subServiceTypeSelect">
-                            <select>
+                        <div class="select">
+                            <select id="subServiceTypeSelect">
                                 <option value="Admin-Advocacy">Admin-Advocacy</option>
                                 <option value="Admin-Board">Admin-Board</option>
                                 <option value="Admin-Event Assistance">Admin-Event Assistance</option>
@@ -307,8 +305,8 @@
 
                     <label class="label">Covid Agreement?</label>
                     <div class="control ">
-                        <div class="select" id="covidAgreementSelect">
-                            <select>
+                        <div class="select">
+                            <select id="covidAgreementSelect">
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -352,8 +350,8 @@
                     </div>
                     <label class="label">Shorewood</label>
                     <div class="control ">
-                        <div class="select" id="shorewoodSelect">
-                            <select>
+                        <div class="select">
+                            <select id="shorewoodSelect">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>
 
@@ -362,8 +360,8 @@
                     </div>
                     <label class="label">Cancellation</label>
                     <div class="control ">
-                        <div class="select" id="cancellationSelect">
-                            <select>
+                        <div class="select">
+                            <select id="cancellationSelect">
                                 <option value="Driver Cancelled">Driver Cancelled</option>
                                 <option value="Rider Cancelled">Rider Cancelled</option>
                                 <option value="Short Notice">Short Notice</option>
@@ -406,6 +404,7 @@
             </footer>
         </div>
     </div>
+    -->
     <!--People Search
 
     <div class="modal" id="addContactModal">
@@ -790,7 +789,18 @@
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        let auth = firebase.auth();
+        var auth = firebase.auth();
+        /*
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(() => {
+
+                return firebase.auth().signInWithEmailAndPassword(email, password);
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+            });
+*/
         let db = firebase.database().ref();
 
         // define a storage reference

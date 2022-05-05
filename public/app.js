@@ -2,7 +2,11 @@
 //Access Appointments
 var personValues = {};
 var appointmentValues = {};
-
+/*var user_cred;
+var user = user_cred.user;
+configureNav(user);
+*/
+/*
 function snapshotToArray(snapshot) {
     var returnArr = [];
 
@@ -15,22 +19,23 @@ function snapshotToArray(snapshot) {
 
     return returnArr;
 };
-
+*/
 function getDatabaseSnapshot(dbRef, child, docName) {
     if (dbRef === db) {
         console.log("Appointments");
-        db.child(child).child(docName).get().then((snapshot) => {
+        dbRef.child(child).child(docName).get().then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
+                console.log(Object.values(snapshot.val()));
                 // return snapshot.val();
                 return new Promise((resolve, reject) => {
-                    resolve(snapshotToArray(snapshot))
+                    resolve(Object.values(snapshot.val()))
                 })
             } else {
                 console.log("No data available");
             }
         }).
         then(appt_data => {
+            console.log(appointmentValues);
             databaseSearch(appointmentValues, Array.from(appt_data), "Appointments");
         }).
 
@@ -39,12 +44,12 @@ function getDatabaseSnapshot(dbRef, child, docName) {
         });
     } else {
         console.log("People");
-        db.child(child).child(docName).get().then((snapshot) => {
+        dbRef.child(child).child(docName).get().then((snapshot) => {
             if (snapshot.exists()) {
                 console.log(snapshot.val());
                 // return snapshot.val();
                 return new Promise((resolve, reject) => {
-                    resolve(snapshotToArray(snapshot))
+                    resolve(Object.values(snapshot.val()))
                 })
             } else {
                 console.log("No data available");
@@ -66,57 +71,58 @@ var appt_data;
 try {
     let pplSearchBtn = document.querySelector('#pplSearchBtn');
     pplSearchBtn.addEventListener('click', (e) => {
-        let pplOtherVal1 = document.querySelector("#otherCol1");
-        let pplOtherVal2 = document.querySelector("#otherCol2");
-        let isVolunteer = document.querySelector("#isVolunteer");
+        personResultTable.innerHTML = "";
+        let pplOtherVal1 = document.querySelector("#otherCol1").value;
+        let pplOtherVal2 = document.querySelector("#otherCol2").value;
+        let isVolunteer = document.querySelector("#isVolunteer").value;
         personValues['Volunteer'] = isVolunteer;
-        let isClient = document.querySelector("#isClient");
+        let isClient = document.querySelector("#isClient").value;
         personValues['Client'] = isClient;
-        let isPotVol = document.querySelector("#isPotVol");
+        let isPotVol = document.querySelector("#isPotVol").value;
         personValues['Potential Volunteer'] = isPotVol;
-        let isPotClient = document.querySelector("#isPotClient");
+        let isPotClient = document.querySelector("#isPotClient").value;
         personValues['Potential Client'] = isPotClient;
-        let isMADD = document.querySelector("#isMADD");
+        let isMADD = document.querySelector("#isMADD").value;
         personValues['MADD'] = isMADD;
-        let pplFirstName = document.querySelector("#firstName");
+        let pplFirstName = document.querySelector("#firstName").value;
         personValues['First Name'] = pplFirstName;
-        let pplLastName = document.querySelector("#lastName");
+        let pplLastName = document.querySelector("#lastName").value;
         personValues['Last Name'] = pplLastName;
-        let pplHomePhone = document.querySelector("#homePhone");
+        let pplHomePhone = document.querySelector("#homePhone").value;
         personValues['Home Phone'] = pplHomePhone;
-        let pplCellPhone = document.querySelector("#cellPhone");
+        let pplCellPhone = document.querySelector("#cellPhone").value;
         personValues['Cell Phone'] = pplCellPhone;
-        let pplRides = document.querySelector("#rides");
+        let pplRides = document.querySelector("#rides").value;
         personValues['Rides'] = pplRides;
-        let pplShoppingFor = document.querySelector("#shoppingFor");
+        let pplShoppingFor = document.querySelector("#shoppingFor").value;
         personValues['Shopping For'] = pplShoppingFor;
-        let pplShoppingWith = document.querySelector("#shoppingWith");
+        let pplShoppingWith = document.querySelector("#shoppingWith").value;
         personValues['Shopping With'] = pplShoppingWith;
-        let pplChores = document.querySelector("#chores");
+        let pplChores = document.querySelector("#chores").value;
         personValues['Chores'] = pplChores;
-        let pplHomeRepairs = document.querySelector("#homeRepairs");
+        let pplHomeRepairs = document.querySelector("#homeRepairs").value;
         personValues['Home Repairs'] = pplHomeRepairs;
-        let pplVisit = document.querySelector("#visit");
+        let pplVisit = document.querySelector("#visit").value;
         personValues['Visit'] = pplVisit;
-        let pplDateActiveStart = document.querySelector("#dateActiveStart");
+        let pplDateActiveStart = document.querySelector("#dateActiveStart").value;
         personValues['Date Active-Start'] = pplDateActiveStart;
-        let pplDateActiveEnd = document.querySelector("#dateActiveEnd");
+        let pplDateActiveEnd = document.querySelector("#dateActiveEnd").value;
         personValues['Date Active-End'] = pplDateActiveEnd;
-        let pplDateOfBirthStart = document.querySelector("#dateOfBirthStart");
+        let pplDateOfBirthStart = document.querySelector("#dateOfBirthStart").value;
         personValues['DOB-Start'] = pplDateOfBirthStart;
-        let pplDateOfBirthEnd = document.querySelector("#dateOfBirthEnd");
+        let pplDateOfBirthEnd = document.querySelector("#dateOfBirthEnd").value;
         personValues['DOB-End'] = pplDateOfBirthEnd;
-        let congregation = document.querySelector("#congregation");
+        let congregation = document.querySelector("#congregation").value;
         personValues['Congregation'] = congregation;
-        let vaccinated = document.querySelector("#vaccinated");
+        let vaccinated = document.querySelector("#vaccinated").value;
         personValues['Fully vaccinated'] = vaccinated;
-        let vaccineRefusal = document.querySelector("#vaccineRefusal");
+        let vaccineRefusal = document.querySelector("#vaccineRefusal").value;
         personValues['Will NOT get vaccine'] = vaccineRefusal;
-        let vaccinepreferred = document.querySelector("#dateOfBirthEnd");
+        let vaccinepreferred = document.querySelector("#dateOfBirthEnd").value;
         personValues['Prefers Vaccinated Only'] = vaccinepreferred;
-        let pplOtherSearch1 = document.querySelector("#otherSearch1");
+        let pplOtherSearch1 = document.querySelector("#otherSearch1").value;
         personValues[pplOtherVal1] = pplOtherSearch1;
-        let pplOtherSearch2 = document.querySelector("#otherSearch1");
+        let pplOtherSearch2 = document.querySelector("#otherSearch1").value;
         personValues[pplOtherVal2] = pplOtherSearch2;
         getDatabaseSnapshot(people_db, "1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE", `Sheet1`);
 
@@ -129,23 +135,25 @@ try {
     let searchAptBtn = document.querySelector('#searchAptBtn');
     searchAptBtn.addEventListener('click', (e) => {
         //Call function to search appts
-        let apptOtherVal1 = document.querySelector("#otherCol3");
-        let apptOtherVal2 = document.querySelector("#otherCol4");
-        let apptClientName = document.querySelector("#clientNameSelect");
+        apptResultTable.innerHTML = "";
+        let apptOtherVal1 = document.querySelector("#otherCol3").value;
+        let apptOtherVal2 = document.querySelector("#otherCol4").value;
+        let apptClientName = document.querySelector("#clientNameSelect").value;
         appointmentValues['Client Name'] = apptClientName;
-        let apptVolName = document.querySelector("#volNameSelect");
-        appointmentValues['Volunteer Name'] = apptVolName
+        let apptVolName = document.querySelector("#volNameSelect").value;
+        appointmentValues['Volunteer Name'] = apptVolName;
         //Use substrings for date search
-        let apptStartDate = document.querySelector("#appointmentStartDate");
-        appointmentValues['Volunteer Name'] = apptVolName
-        let apptEndDate = document.querySelector("#appointmentEndDate");
-        appointmentValues['Volunteer Name'] = apptVolName
-        let apptShorewood = document.querySelector("#Shorewood");
-        appointmentValues['Volunteer Name'] = apptVolName
-        let apptOtherSearch1 = document.querySelector("#otherSearch3");
+        let apptStartDate = document.querySelector("#appointmentStartDate").value;
+        appointmentValues['Date of Service-Start'] = apptStartDate;
+        let apptEndDate = document.querySelector("#appointmentEndDate").value;
+        appointmentValues['Date of Service-End'] = apptEndDate;
+        let apptShorewood = document.querySelector("#Shorewood").value;
+        appointmentValues['Shorewood Resident Y or N'] = apptShorewood;
+        let apptOtherSearch1 = document.querySelector("#otherSearch3").value;
         appointmentValues[apptOtherVal1] = apptOtherSearch1;
-        let apptOtherSearch2 = document.querySelector("#otherSearch4");
+        let apptOtherSearch2 = document.querySelector("#otherSearch4").value;
         appointmentValues[apptOtherVal2] = apptOtherSearch2;
+        console.log(appointmentValues);
         getDatabaseSnapshot(db, '1C0V_NenLtj08Fq1-55L53aO608oVMcF63-1dgVLUuss', `Pending`);
         e.preventDefault();
     });
@@ -156,53 +164,57 @@ try {
 //Function to search through entries to find matches #TODO
 function databaseSearch(searchValues, data, type) {
     curr_values = Array.from(data);
-    console.log((typeof curr_values));
+    console.log(curr_values);
     for (let i in searchValues) {
-        //console.log(curr_values.length);
-        searchValue = searchValues[i].value;
-        if (searchValue != null) {
-            if (searchValue == "Yes") {
-                curr_values = getMatches(i, true, curr_values);
-            } else if (searchValue == "No") {
-                curr_values = getMatches(i, false, curr_values);
-            } else if (i.includes("Date")) {
-                if (i.includes("Start")) {
-                    curr_values = getMatches(i, searchValue, curr_values, type, "Start");
+        if (typeof searchValues[i] !== "undefined" && searchValues[i] !== "" && searchValues[i] != "Select") {
+            searchValue = searchValues[i];
+            if (searchValue != null && searchValue != "") {
+                console.log(searchValue);
+                if (searchValue === "Yes") {
+                    curr_values = getMatches(i, true, curr_values);
+                } else if (searchValue === "No") {
+                    curr_values = getMatches(i, false, curr_values);
+                } else if (i.includes("Date")) {
+                    if (i.includes("Start")) {
+                        curr_values = getMatches(i, searchValue, curr_values, type, "Start");
+                    }
                 } else {
-                    curr_values = getMatches(i, searchValue, curr_values, "End");
+                    curr_values = getMatches(i, searchValue, curr_values);
                 }
-            } else {
-                curr_values = getMatches(i, searchValue, curr_values);
             }
         }
-        //curr_values = getMatches(i, searchValues[i], curr_values);
-        curr_values = searchValues[i].value;
-        console.log(curr_values);
     }
+    console.log(curr_values);
     createTable(curr_values, type);
 }
 
 function getMatches(key, value, data, searchedDB, datetype = "None") {
-    matches = [];
-    console.log(Object.values(data));
+    var matches = [];
+    console.log(key, value);
+    if (value == true) {
+        console.log("Passed");
+    }
     Object.values(data).forEach(entry => {
-        if (typeof (entry) != "undefined") {
+        if (typeof (entry) !== "undefined") {
             if (datetype == "Start") {
                 fieldToSearch = key.substring(0, key.indexOf('-'));
                 startDate = Date.parse(value);
-                entryDate = Date.parse(fieldToSearch);
-
+                entryDate = Date.parse(entry[fieldToSearch]);
                 if (searchedDB == "Appointments") {
-                    endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
+                    endDateString = fieldToSearch.concat('-End');
+                    endDate = Date.parse(appointmentValues[endDateString]);
+
                 } else {
-                    endDate = Date.parse(person_values[fieldToSearch.concat('-End')]);
+                    endDateString = fieldToSearch.concat('-End');
+                    endDate = Date.parse(personValues[endDateString]);
                 }
+                console.log(startDate, endDate, entryDate);
                 if (startDate < entryDate && endDate > entryDate) {
-                    matches.append(entry);
+                    matches.push(entry);
                 }
             } else {
                 if (entry[key] == value) {
-                    matches.append(entry)
+                    matches.push(entry)
                 }
             }
         }
@@ -213,53 +225,29 @@ function getMatches(key, value, data, searchedDB, datetype = "None") {
 
 //Create table displaying all appt values #TODO
 try {
-    let apptResultTable = document.querySelector("#apptResultTable")
+    var apptResultTable = document.querySelector("#apptResultTable");
 } catch (e) {
 
 }
 try {
-    let personResultTable = document.querySelector("#personResultTable")
-} catch (e) {
-
-}
+    var personResultTable = document.querySelector("#personResultTable");
+} catch (e) {}
 
 function createTable(data, type) {
     if (type == "Appointments") {
-        apptResultTable.innerHTML = `<table class="table is-bordered is-hoverable"><tr>
-    <td>id</td>
-    <td>Joan Notified</td>
-    <td>Client First Name</td>
-    <td>Client Name</td>
-    <td>Date of Service</td>
-    <td>Time of Ride</td>
-    <td>Volunteer Name</td>
-    <td>Service Type</td>
-    <td>Sub-Service Type</td>
-    <td>COVID Agreement</td>
-    <td>Hours Spent</td>
-    <td>Ride Units</td>
-    <td>Miles</td>
-    <td>Destination Name</td>
-    <td>Destination Address</td>
-    <td>Additional Notes</td>
-    <td>Shorewood</td>
-    <td>Cancellation Reason</td>
-    <td>Volunteer Matched with Cancelled Ride</td>
-    <td>Month</td>
-    <td>Ride Coordinator</td>
-    </tr>
-    <tr>`;
-
+        let htmlString = "<table class=\"table is-bordered is-hoverable\"><tbody><tr><td>id</td><td>Joan Notified</td><td>Client First Name</td><td>Client Name</td><td>Date of Service</td><td>Time of Ride</td><td>Volunteer Name</td><td>Service Type</td><td>Sub-Service Type</td><td>COVID Agreement</td><td>Hours Spent</td><td>Ride Units</td><td>Miles</td><td>Destination Name</td><td>Destination Address</td><td>Additional Notes</td><td>Shorewood Resident Y or N</td> <td>Cancellation Reason</td><td>Volunteer Matched with Cancelled Ride</td><td>Month</td><td>Ride Coordinator</td></tr>";
         Object.values(data).forEach(appointment => {
-            apptResultTable.innerHTML += `    <td>${appointment['id']}</td>
+            htmlString = htmlString.concat(`<tr>
+            <td>${appointment['id']}</td>
         <td> ${appointment['Joan Notified']}</td>
         <td>${appointment['Client First Name']}</td>
         <td>${appointment['Client Name']}</td>
-        <td>${appointment['Date of Service}']}</td>
-        <td>${appointment['Time of Ride']}</td>
+        <td>${appointment['Date of Service']}</td>
+        <td>${new Date(appointment['Time of ride']).toLocaleTimeString('en',
+        { timeStyle: 'short', hour12: true, timeZone: 'America/Chicago' })}</td>
         <td>${appointment['Volunteer Name']}</td>
         <td>${appointment['Service Type']}</td>
-        <td>${appointment['Sub-Service Type']}</td>
+        <td>${appointment['Sub Service Type']}</td>
         <td>${appointment['COVID Agreement']}</td>
         <td>${appointment['Hours Spent']}</td>
         <td>${appointment['Ride Units']}</td>
@@ -267,15 +255,17 @@ function createTable(data, type) {
         <td>${appointment['Destination Name']}</td>
         <td>${appointment['Destination Address']}</td>
         <td>${appointment['Additional Notes']}</td>
-        <td>${appointment['Shorewood']}</td>
+        <td>${appointment['Shorewood Resident Y or N']}</td>
         <td>${appointment['Cancellation Reason']}</td>
         <td>${appointment['Volunteer Matched with Cancelled Ride']}</td>
         <td>${appointment['Month']}</td>
-        <td>${appointment['Ride Coordinator']}</td> </tr>`;
+        <td>${appointment['Ride Coordinator']}</td> </tr>`);
         });
-        apptResultTable.innerHTML += `</table>`
+        htmlString += `</tbody></table>`;
+        apptResultTable.innerHTML = htmlString;
+
     } else {
-        personResultTable.innerHTML = ` <table>
+        let htmlString = `<table class="table is-bordered is-hoverable">
         <tr>
             <td>ID</td>
             <td>Volunteer</td>
@@ -340,8 +330,8 @@ function createTable(data, type) {
             <td>Will NOT get vaccine</td>
             <td>Prefers Vaccinated Only</td>
             </tr>`
-        data.forEach(person => {
-            personResultTable.innerHTML += `
+        Object.values(data).forEach(person => {
+            htmlString += `
         <tr>
             <td>${person['ID']}</td>
             <td>${person['Volunteer']}</td>
@@ -406,8 +396,10 @@ function createTable(data, type) {
             <td>${person['Will NOT get vaccine']}</td>
             <td>${person['Prefers Vaccinated Only']}</td>
         </tr>`
-            personResultTable.innerHTML += `</table>`;
+
         })
+        htmlString += `</table>`;
+        personResultTable.innerHTML = htmlString;
     }
 }
 
@@ -421,7 +413,7 @@ signin_form.addEventListener("submit", (e) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in
-            var user_cred = userCredential.user;
+            user_cred = userCredential.user;
             console.log("Sign-in complete!");
             signinModal.classList.remove('is-active');
             signin_form.reset();
@@ -535,42 +527,3 @@ signinModalBg.addEventListener('click', () => {
     signinModal.classList.remove('is-active');
     preventDefault();
 });
-//Contacts
-
-
-/*db.on('value', (snapshot) => {
-    console.log(snapshot.val());
-})
-
-fetch(DBURL)
-    .then(response => response.json())
-    .then()
-    */
-
-//Appointment
-/*
-function getDatabaseSnapshot(dbRef, docName) {
-    try {
-        get(child(dbRef, docName)).then((snapshot) => {
-            if (snapshot.exists()) {
-                return snapshot.val();
-            } else {
-                console.log("No data available");
-            }
-        });
-    } catch (ReferenceError) {
-
-    }
-}
-*/
-/*
-people_db.child("1hIPBrzcGDxjujGsvDRWoyF4IygUkVK_jTkpron7UTPE").child("Sheet1").get().then((snapshot) => {
-    if (snapshot.exists()) {
-        console.log(snapshot.val());
-    } else {
-        console.log("No data available");
-    }
-}).catch((error) => {
-    console.error(error);
-});
-*/
