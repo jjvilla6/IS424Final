@@ -242,7 +242,7 @@ function createTable(data, type) {
         <td> ${appointment['Joan Notified']}</td>
         <td>${appointment['Client First Name']}</td>
         <td>${appointment['Client Name']}</td>
-        <td>${appointment['Date of Service']}</td>
+        <td>${new Date(appointment['Date of Service']).toDateString()}</td>
         <td>${new Date(appointment['Time of ride']).toLocaleTimeString('en',
         { timeStyle: 'short', hour12: true, timeZone: 'America/Chicago' })}</td>
         <td>${appointment['Volunteer Name']}</td>
@@ -369,11 +369,11 @@ function createTable(data, type) {
             <td>${person['Admin']}</td>
             <td>${person['I&A']}</td>
             <td>${person['Service Comments']}</td>
-            <td>${person['Date Active']}</td>
-            <td>${person['Date Inactive']}</td>
+            <td>${new Date(person['Date Active']).toDateString()}</td>
+            <td>${new Date(person['Date Inactive']).toDateString()}</td>
             <td>${person['Reason Inactive']}</td>
-            <td>${person['DOB']}</td>
-            <td>${person['Birthday']}</td>
+            <td>${new Date(person['DOB']).toDateString()}</td>
+            <td>${new Date(person['Birthday']).getMonth()+'/'+new Date(person['Birthday']).getDate()}</td>
             <td>${person['Gender']}</td>
             <td>${person['Marital Status']}</td>
             <td>${person['Lives With']}</td>
